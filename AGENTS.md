@@ -24,6 +24,7 @@ This workspace holds **16 projects across 3 domains**:
 | `earnings-momentum-scanner/` | Trading | Python | Active (PEAD strategy) — tracked by root git |
 | `scanner-training/` | Trading | Python | Support (validation/tuning) |
 | `chart-visualizer/` | Trading | Python | Support (charts from v2 output) |
+| `intraday-scanner/` | Trading | Python | **Active (intraday options — separate from swing scanners)** |
 | `_old-scanner/`, `_archived/` | Trading | Python | Archived (v5.0 / v6.0 frozen) |
 | `job-hunter/` | Career | Python + Chrome ext | Active (personal tool) |
 | `tableflow/` | SaaS | Node.js + Docker | Flagship — 9/14 services production-ready |
@@ -92,18 +93,32 @@ Has `requirements.txt`, `backbone50.txt`, `nifty500.txt`, `COMPARISON_REPORT.md`
 12. **Timeframe tracking + filter** — every pattern result now includes `timeframe` column (Daily/Weekly/Monthly). `--timeframe daily|weekly|monthly` flag filters to one timeframe for manual chart verification.
 13. **Automated Telegram notifications** — scanner.py and daily_scan.py auto-send Telegram on completion. `--no-notify` to opt out.
 
-**Backtest results (post-fix, validated on two datasets):**
+**Backtest results (post-v3.1 fix, validated on nifty200, 2 years):**
 
-| Dataset | Stocks | Trades | Win rate | Avg loss | Expectancy | Max drawdown |
-|---|---|---|---|---|---|---|
-| backbone50 (in-sample) | 51 | 860 | 42.7% | -5.12% | +2.03% | -69.1% |
-| nifty200 (out-of-sample) | 178 | 2903 | 42.6% | -4.76% | +1.37% | -84.6% |
+| Version | Trades | Win rate | Avg win | Avg loss | Expectancy | PF | Max DD |
+|---|---|---|---|---|---|---|---|
+| v3.1 (2.0x ATR + re-entry) | 3012 | 40.6% | +7.6% | -3.0% | +1.30% | 1.73 | -60.1% |
+| v3.0 (1.5x ATR, old) | 2389 | 38.0% | +9.1% | -3.4% | +1.32% | 1.62 | -73.9% |
+| v2 (original stops) | 1888 | 45.4% | +6.6% | -3.4% | +1.17% | 1.64 | -61.5% |
 
-- v3 and v2 are now **tied on expectancy** (the pre-fix gap is eliminated)
-- v3 has tighter avg loss than v2 (-4.76% vs -4.89% on nifty200)
-- **Max drawdown is worse for v3** — open issue, needs investigation before live trading with real capital
-- C&H Weekly fix generalizes (not overfit): +0.87% in-sample, +0.76% out-of-sample
-- Full breakdown in `COMPARISON_REPORT.md`
+- **v3.1 beats v2** on profit factor (1.73 vs 1.64), expectancy (+1.30 vs +1.17), and avg loss (-3.0% vs -3.4%)
+- **v3.1 beats v3.0** on profit factor (1.73 vs 1.62), max drawdown (-60.1% vs -73.9%), win rate (40.6% vs 38.0%)
+- v2 has higher win rate (45.4%) but lower expectancy — fewer trades, wider stops, bigger losses
+- Re-entry feature: 691 trades, 49.2% win rate (highest of any pattern), +0.58% avg P&L
+
+**v3.1 improvements (2026-07-29):**
+14. **ATR multiplier 1.5x → 2.0x** — ATR sweep on backbone50 showed 2.0x has best PF (2.03 vs 1.80) and best max DD (-46.8% vs -66.7%). 1.5x was too tight, causing whipsaws without reducing losses.
+15. **8% max stop cap for ALL patterns** — structural stops (C&H handle low, wedge low) can be 15-25% below entry on monthly patterns. Now capped at 8% max risk; if structural stop is wider, ATR stop used; if ATR also too wide, hard cap at 8%.
+16. **Monthly C&H NEAR threshold 20% → 5%** — was surfacing stocks 20% below breakout as "NEAR" (actionable). Now only within 5% of breakout. WATCH threshold 35% → 10%. Daily/weekly already at 5%/15%.
+17. **T1 target 60% → 50% of measured move** — full measured-move target is too ambitious for swing trades (often 20-50% away). 50% is more realistic.
+18. **Max risk filter (10%)** — picks with >10% stop loss from CMP are rejected entirely.
+19. **Max distance filter (8%)** — NEAR/WATCH picks >8% from breakout are rejected (only BREAKOUT picks exempt).
+20. **R:R from breakout entry, not CMP** — R:R now calculated from the breakout price (where you'd actually enter), not CMP (which may be below breakout for NEAR picks). Prevents misleading R:R ratios.
+21. **Wide-stop R:R penalty** — R:R halved for >8% risk, 20% penalty for >6% risk.
+22. **Re-entry after whipsaw** — if a trade hits SL but the stock recovers above the breakout level within 30 days, re-enter with a tight 2% stop. 49.2% win rate on re-entries (highest of any pattern). In paper tracker, stopped-out trades auto-check for re-entry on each update.
+23. **Paper tracker: NEAR picks wait for breakout** — NEAR picks no longer entered at CMP (below breakout). They start as WAITING_BREAKOUT and only enter when price crosses the breakout level. This was the root cause of the 83% stop-out rate on the 2026-07-17 batch.
+24. **`--stocks` flag** — scan a custom stock list file (e.g. `--stocks nifty200.txt`) instead of full NSE EQ universe. Faster for testing.
+25. **Whipsaw analysis tool** (`whipsaw_analysis.py`) — checks how many SL exits would have hit target if held. Finding: 16.3% of SL exits are whipsaws (stock hit SL, then reached T1 within 30 days). 81% went lower before recovering (wider stop wouldn't help).
 
 ```powershell
 pip install -r requirements.txt
@@ -116,6 +131,9 @@ python scanner.py --top 50 --min-score 50
 
 # Retail filter: only stocks between 100-400 Rs
 python scanner.py --min-price 100 --max-price 400
+
+# Custom stock list (faster than full universe)
+python scanner.py --stocks nifty200.txt --min-price 100 --max-price 400
 
 # Original v2 stop loss (wider, for comparison)
 python scanner.py --sl-mode original
@@ -160,21 +178,49 @@ python compare_backtest.py --stocks nifty200.txt --years 2 --min-score 40
 
 # Paper tracker — track live picks vs backtest expectancy
 python paper_tracker.py init                              # init from latest scan CSV
-python paper_tracker.py update                            # fetch current prices, update status
+python paper_tracker.py update                            # fetch prices, update status, auto re-entry check
 python paper_tracker.py update --price NATCOPHARM.NS=980  # manual price override
 python paper_tracker.py status                            # full status + closed trades summary
 python paper_tracker.py summary                           # one-line summary
 python paper_tracker.py reset                             # delete tracker (careful)
+
+# Analysis tools (v3.1)
+python whipsaw_analysis.py                                # find SL exits that would have hit target
+python sweep_atr.py                                       # ATR multiplier sweep (1.0x-3.0x)
+python final_comparison.py                                # v3.1 vs v3.0 vs v2 comparison
+```
+
+**Paper tracker statuses (v3.1):**
+- `WAITING_BREAKOUT` — NEAR pick, not yet entered. Waiting for price to cross breakout level.
+- `OPEN` — active trade (BREAKOUT pick entered at CMP, or NEAR pick entered after breakout confirmed).
+- `WIN_T1` — price hit Target 1, position still open for T2.
+- `WIN_T2` — price hit Target 2, trade closed.
+- `LOSS` — stop loss hit, trade closed. Tracker auto-checks for re-entry on next update.
+- `RE_ENTERED` — stock recovered above breakout after SL hit, re-entered with tight 2% stop.
+- `TIME_EXIT` — held 45 days without hitting SL or target, closed at current price.
+- `WATCH` — WATCH status pick, not traded (too far from breakout at scan time).
+
+**Re-entry feature:**
+When a trade hits stop loss, the tracker remembers the breakout level. On each `update`, it checks if the stock has recovered above that breakout level within 30 days. If yes, it re-enters the trade with a tight 2% stop (below the breakout level). This captures whipsaw recoveries — stocks that got shaken out then continued to target. Backtest shows 49.2% win rate on re-entries (highest of any pattern).
+
+```
+Example paper tracker update output:
+  [BREAKOUT] SCI.NS broke out to 281.50 >= 280.50 — entered
+  [RE-ENTRY] BANDHANBNK.NS recovered to 248.20 >= breakout 246.00
+  Updated 18 open trades.
 ```
 
 **Key files:**
-- `scanner.py` — main weekly scanner (v3 engine)
-- `daily_scan.py` — daily morning scanner (volume + sectors)
+- `scanner.py` — main weekly scanner (v3.1 engine, 2.0x ATR, 8% stop cap, re-entry)
+- `daily_scan.py` — daily morning scanner (volume + sectors, 2.0x ATR, 8% stop cap)
 - `gen_charts.py` — chart generator (daily/weekly/monthly per pick)
 - `telegram_notify.py` — Telegram alerts (top 10 picks)
-- `paper_tracker.py` — paper trade tracker for live validation
-- `compare_backtest.py` — v3 vs v2 side-by-side backtest comparison
-- `backtest.py` — standalone v3 backtest
+- `paper_tracker.py` — paper trade tracker (NEAR waits for breakout, auto re-entry after SL)
+- `compare_backtest.py` — v3.1 vs v2 side-by-side backtest comparison
+- `backtest.py` — standalone v3.1 backtest (with re-entry logic)
+- `whipsaw_analysis.py` — find SL exits that would have hit target if held
+- `sweep_atr.py` — ATR multiplier sweep (1.0x, 1.5x, 2.0x, 2.5x, 3.0x)
+- `final_comparison.py` — v3.1 vs v3.0 vs v2 comparison report
 - `COMPARISON_REPORT.md` — full backtest results + pattern breakdown
 - `backbone50.txt` — 51 curated momentum stocks (in-sample)
 - `nifty200.txt` — 200 large-cap stocks (out-of-sample test set)
@@ -190,6 +236,8 @@ Subset of scanner-v2: no monthly TF, no WATCH tier, no diagonal neckline, single
 
 ### `earnings-momentum-scanner/` — PEAD / post-earnings momentum (v3)
 Different strategy: scans for post-earnings pullback entries. Uses `screener.in` for earnings data + `scipy` for profit projection. Modes: weekly (588 stocks), discovery (2131 stocks, ~90 min), daily (top sectors + backbone). **Has `requirements.txt`.** This is the project tracked by the root git repo (remote: `karthik0419/earnings-momentum-scanner`).
+
+**F&O options backtest (2026-07-22, see `OPTIONS_PEAD_REPORT.md`):** PEAD edge VALIDATED on the optionable F&O universe — 112 trades, +2.02%/trade, PF 2.20, **t=3.21 (significant)**, ~28 trades/quarter, 12.4-day avg hold. Options translation (ATM monthly calls, BS-repriced, 7% premium friction): +17.3% of premium avg but t=1.43 (not significant), median trade -48%, stops cost -67% of premium, max ~8 consecutive losses. **Capital verdict: ATM options need ≥₹3-5L to survive variance (median premium ₹26k/lot, avg losing lot -₹18k). Below that capital: trade PEAD in cash equity only.** OTM test ("cheap lots"): ATM lots under ₹15k don't exist (NSE lot normalization) — cheap lots are OTM strikes. OTM 5%/10% keep PF (1.4-1.6, convexity monetizes PEAD's fat right tail) but median trade loses 64-82% and win rate drops to ~30%; viable bankroll drops to ~₹1.5-2L. Sanctioned small-capital experiment rules in the report (OTM 5% monthly, 1 lot, R:R≥2.5 only, ₹12-15k/month cap, 4-loss kill switch). Key files: `fetch_fno_list.py` (F&O universe + lot sizes), `fno_list.txt`, `fno_lots.csv`, `analyze_options_pead.py` (ATM economics), `analyze_cheap_options.py` (ATM vs OTM).
 
 ```powershell
 cd earnings-momentum-scanner
@@ -222,6 +270,45 @@ python visualize.py
 pip install -r requirements.txt
 ```
 
+### `intraday-scanner/` — Intraday options scanner (separate from swing)
+**Different purpose from scanner-v3.** This pulls LIVE NSE market data for intraday OPTIONS trading, not swing setups. No daily/weekly pattern detection — just real-time market data + sector rotation + F&O gainers/losers for intraday decisions.
+
+Pulls from NSE official API (`https://www.nseindia.com/api/...`):
+1. Broad market indices (NIFTY/BANKNIFTY/MIDCAP/IT/AUTO) with advance/decline
+2. **Sectoral indices (19 sectors) ranked by % change** — intraday sector rotation
+3. Top F&O gainers/losers (filtered to stocks with exchange-traded options)
+4. Volume toppers (institutional activity)
+5. Pre-open session data (morning sentiment)
+6. **Trade plan** — combines sector strength with stock gainers/losers to highlight high-conviction call/put candidates
+
+Does NOT predict. Surfaces the same data intraday traders look at on NSE's website, in one place + filtered to F&O stocks.
+
+```powershell
+cd intraday-scanner
+python intraday_scanner.py                  # top 15 per category
+python intraday_scanner.py --top 20         # top 20 per category
+python intraday_scanner.py --no-sectors     # skip sector breakdown
+```
+
+**How to use:**
+- Check market sentiment (NIFTY A/D ratio) — bearish = put bias, bullish = call bias
+- Check sector rotation — strongest sectors = call option bias, weakest = put bias
+- High-conviction calls = gainers in STRONG sectors with turnover >100cr
+- High-conviction puts = losers in WEAK sectors with turnover >100cr
+- ALWAYS check option chain OI before entering
+- Strict stop losses (2-3% max for intraday options)
+- Exit before 3:15 PM
+
+**⚠️ BACKTESTED 2026-07-22 — STRATEGY DOES NOT WORK FOR TRADING (see `BACKTEST_REPORT.md`):**
+365-day backtest (241 days, 116 F&O stocks, hourly bars, no lookahead): every configuration LOSES money after stops+costs (best: -3.6%, strategy config: -9.0%, Sharpe -1.02). Key findings: (1) the sector filter SUBTRACTS alpha intraday, (2) 2% stops are inside the noise band and destroy the weak edge, (3) raw momentum continuation exists (+0.1%/trade, t≈2) but is smaller than option friction (~0.3-0.6% underlying-equivalent), (4) NIFTY/BANKNIFTY first-hour momentum has zero edge (PF 0.64/0.74). **Use as an information dashboard only — do NOT trade its output with options. Swing scanner-v3 has 15-20x the per-trade edge.**
+
+**Key files:**
+- `intraday_scanner.py` — main scanner (single file, no dependencies beyond requests/pandas)
+- `backtest_intraday.py` — 365-day backtest (variants A/B/C + indices), 24h data cache
+- `diag_raw_signal.py` — raw signal diagnostic (no stops/costs, t-stats)
+- `BACKTEST_REPORT.md` — full verdict with numbers
+- `README.md` — usage guide
+
 ### `_old-scanner/`, `_archived/` — Archived versions
 Frozen v6.0 and v5.0. Reference only. Do not modify.
 
@@ -237,35 +324,79 @@ Automated job application system for Kartik's DevOps/SRE profile. Scrapes Linked
 - Two different emails appear in profile (`bandewarkarthik@gmail.com` vs `kartikbandewar1911@gmail.com`).
 - Chrome extension `content.js` reportedly has a password in default profile.
 
+### ⚠️ Security notes
+- `.env` contains real credentials (Telegram bot token, LinkedIn/Naukri/Workday/Instahyre passwords). **Never commit, never share publicly.**
+- Phone `8149927963` is hardcoded in multiple files.
+- Two different emails appear in profile (`bandewarkarthik@gmail.com` vs `kartikbandewar1911@gmail.com`).
+- Chrome extension `content.js` reportedly has a password in default profile.
+
+### Quick Start (EASIEST WAY)
+```powershell
+# Option 1: Double-click desktop shortcut "Job Auto-Apply"
+# Option 2: Run the batch file
+.\apply.bat
+
+# Option 3: Command line
+python apply.py                  # 5 jobs on LinkedIn + 5 on Instahyre (10 total)
+python apply.py --limit 10       # 10 jobs on each platform (20 total)
+python apply.py --linkedin       # LinkedIn only
+python apply.py --instahyre      # Instahyre only
+python export_jobs.py            # Export applied jobs to Excel (tracker/applied_jobs.xlsx)
+```
+
 ### Commands
 ```powershell
 pip install -r requirements.txt
 
-# Manual run with Telegram approval workflow
-python main.py
+# ── Simple auto-apply (RECOMMENDED) ──
+python apply.py                  # LinkedIn + Instahyre, 5 jobs each
+python apply.py --limit 10       # 10 jobs each platform
+python apply.py --linkedin       # LinkedIn Easy Apply only
+python apply.py --instahyre      # Instahyre only
+python export_jobs.py            # Export to Excel + auto-open
+.\apply.bat                      # Interactive menu (double-click or run)
 
-# Fully automated (auto-apply at score >=70)
-python automate.py --limit 15
-
-# Apply to a specific job URL
-python apply_now.py <url>
+# ── Legacy commands ──
+python main.py                   # Manual run with Telegram approval workflow
+python automate.py --limit 15    # Fully automated (auto-apply at score >=70)
+python apply_now.py <url>        # Apply to a specific job URL
 
 # Install Windows Task Scheduler job (daily 9 AM)
 python scheduler_setup.py
 # Manual trigger:  schtasks /Run /TN "JobHunterAutoApply"
 # Remove:          schtasks /Delete /TN "JobHunterAutoApply" /F
 
-.\run_daily.bat             # runs automate.py
+.\run_daily.bat                  # runs automate.py
 ```
 
+### How it works (apply.py)
+1. Opens visible Chrome browser
+2. **LinkedIn**: Logs in via saved cookies → searches 14 countries (Pune, Remote, UAE, Singapore, Germany, UK, Canada, Australia, etc.) → finds Easy Apply jobs → navigates to apply URL → fills dialog form (resume, phone, email, salary, experience, radio buttons, dropdowns) → submits
+3. **Instahyre**: Logs in via cookies/email/Google SSO → searches 4 keywords (DevOps, SRE, Cloud, Platform Engineer) → clicks "Apply to {Company}" (one-click apply using candidate profile)
+4. Saves all applied jobs to SQLite tracker → export to Excel with `python export_jobs.py`
+5. Cookies saved for both platforms — no manual login needed on future runs
+
+### Excel export (tracker/applied_jobs.xlsx)
+- Sheet 1: "Applied Jobs" — color-coded by source (LinkedIn=blue, Instahyre=orange) and score (green≥70, yellow≥60, red<60)
+- Sheet 2: "Summary" — breakdown by platform, company, date
+- Sheet 3: "All Jobs" — all 2000+ scraped jobs with status (applied/skipped/found)
+
 ### Structure
+- `apply.py` — **Main entry point** — LinkedIn Easy Apply + Instahyre auto-apply
+- `apply.bat` — Interactive menu launcher (also desktop shortcut)
+- `export_jobs.py` — Export applied jobs to Excel
+- `_show_applied.py` — Print applied jobs list to console
 - `scrapers/` — LinkedIn, Naukri, Indeed, Instahyre, Finland
 - `engine/scorer.py` — role/skills/location/experience scoring (max 100)
 - `applicator/` — Workday, LinkedIn Easy Apply, Oracle ORC
+- `applicator/linkedin_apply.py` — Easy Apply dialog handler (resume upload, form fill, submit)
+- `applicator/session.py` — Cookie-based session management
 - `notifier/telegram_bot.py` — inline buttons: Apply/Skip/Shortlist
 - `tracker/tracker.py` — SQLite (`jobs` table, dedup by job_id)
+- `tracker/applied_jobs.xlsx` — Excel export of all applied jobs
 - `chrome-extension/` — Manifest V3, manual form-fill for 9 ATS platforms
 - `profile/profile.py` — target roles, locations, skills, exclusions
+- `linkedin_cookies.pkl` / `instahyre_cookies.pkl` — Saved session cookies
 
 ---
 
@@ -273,12 +404,18 @@ python scheduler_setup.py
 
 Microservices architecture: 14 services + PostgreSQL + Redis + RabbitMQ + nginx + Prometheus/Grafana. Two deploy modes: Docker Compose, or Windows installer (Inno Setup, bundles Node.js + PostgreSQL + nginx).
 
-### ⚠️ Known issues
-- **`DATABASE_SCHEMA_COMPLETE.sql` is referenced in `docker-compose.yml` but does not exist** — compose will fail on the Postgres init step. Each service manages its own schema instead.
-- **Customer Service uses in-memory Map storage** — data lost on restart. `pg` is in `package.json` but unused. **Critical bug.**
-- **4 services are skeletons**: Aggregator, Online Ordering, Staff, Notification (in tableflow).
-- **No service-to-service auth** on most services.
-- **Frontend uses in-browser Babel** (React via CDN) — fine for demo, slow for production.
+### ⚠️ Known issues (re-verified 2026-07-22 via full codebase audit)
+- **`DATABASE_SCHEMA_COMPLETE.sql`** — was a 0-byte placeholder; now regenerated via `pg_dump --schema-only` (123KB of real schema). ✅ Fixed 2026-07-22.
+- **Customer Service** — was in-memory Map storage; now uses PostgreSQL (`pg` installed, `customer_orders` table to avoid conflict with main `orders` table). ✅ Fixed 2026-07-22.
+- **Report Service** — was returning FAKE data from `dataGenerator.js`; all 10 route files (sales, dashboard, items, payment, customer, inventory, staff, financial, analytics, export) rewritten to use real PostgreSQL queries. ✅ Fixed 2026-07-22.
+- **Auth on order-service and billing-service** — JWT middleware added; order-service allows guest POST/GET for QR self-ordering, all other endpoints require Bearer token; billing-service requires auth on all endpoints. ✅ Fixed 2026-07-22.
+- **MySQL syntax in PostgreSQL schemas** — `billing-service/schema.sql` rewritten to PG syntax (removed `ON UPDATE CURRENT_TIMESTAMP`, `LONGTEXT`, inline `INDEX`); `menu-service/src/db/schema.sql` rewritten to match actual `menu_items` table (was using `items` with `FULLTEXT INDEX`). ✅ Fixed 2026-07-22.
+- **5 services had no schema file** — created `schema.sql` for delivery, aggregator, online-ordering, staff, notification; all applied to DB successfully. ✅ Fixed 2026-07-22.
+- **Hardcoded fallback secrets** — all 14 instances removed across auth, order, billing, menu, delivery, aggregator, online-ordering, staff, notification, report, pm2.config.js; services now fail fast (`process.exit(1)`) if `JWT_SECRET` or `DB_PASSWORD` not set. ✅ Fixed 2026-07-22.
+- **Frontend customer page** — now sends `Authorization: Bearer` header when token available (from URL param or localStorage); guest mode still works for QR ordering. ✅ Fixed 2026-07-22.
+- **Billing GST calculation** — `calculateGST()` in `bills.js` crashed with `toFixed` on NaN when `GST_CGST_RATE`/`GST_SGST_RATE` env vars unset; now defaults to 0. ✅ Fixed 2026-07-22.
+- **Frontend uses in-browser Babel** (React via CDN, no build step) — fine for demo/LAN POS, slow for production web. (Unchanged — by design for zero-build deployment.)
+- **Service readiness (actual)**: ✅ production-grade: auth, order, menu, table, billing, report (6/14). ⚠️ partial: delivery, online-ordering, staff, notification, inventory, kds (6/14). ❌ stubbed: aggregator (stubbed Zomato/Swiggy), customer (basic CRUD). E2E test: 12/12 passed (login → tables → menu → order → bill → payment → reports).
 
 ### Commands — Docker (full stack)
 ```powershell
@@ -303,6 +440,17 @@ cd tableflow
 .\Update TableFlow.bat                        # update
 .\Add Waiter Account.bat                      # create staff account
 .\Network Info.bat                            # show LAN IP for waiter app
+
+# E2E test (requires all 6 core services running)
+node e2e_test.js                              # 12-step: login → tables → menu → order → bill → payment → reports
+
+# Individual service launchers (load .env, set PATH to bundled Node)
+run_auth.bat                                  # auth-service on :5001
+run_order.bat                                 # order-service on :5002
+run_menu.bat                                  # menu-service on :5003
+run_billing.bat                               # billing-service on :5005
+run_report.bat                                # report-service on :5010
+run_customer.bat                              # customer-service on :5009
 ```
 
 ### Service ports
@@ -315,9 +463,9 @@ cd tableflow
 | 5005 | Billing (GST, double-entry accounting) | ✅ Production-ready |
 | 5006 | Table (floors, reservations, QR) | ✅ Production-ready |
 | 5007 | KDS (kitchen display, WebSocket) | ✅ Production-ready |
-| 5008 | Delivery | ⚠️ Partial (skeleton controllers) |
-| 5009 | Customer (CRM, loyalty, RFM) | ⚠️ In-memory DB — critical |
-| 5010 | Report (PDF/Excel/CSV export) | ✅ Functional |
+| 5008 | Delivery | ⚠️ Partial (skeleton controllers, MySQL `?` placeholders) |
+| 5009 | Customer (CRM, loyalty, RFM) | ✅ PostgreSQL (fixed 2026-07-22) |
+| 5010 | Report (PDF/Excel/CSV export) | ✅ Real DB queries (fixed 2026-07-22) |
 | 5011 | Aggregator (Zomato/Swiggy/UberEats) | ❌ Skeleton |
 | 5012 | Online Ordering | ❌ Skeleton |
 | 5013 | Staff | ❌ Skeleton |
@@ -389,9 +537,10 @@ npm run export       # static export to out/
 - `scanner/`, `scanner-v2/`, `weekly-swing-setup-scanner/`, `scanner-training/` have no `requirements.txt`. Add one per project.
 
 ### Suggested cleanup order
-1. Fix TableFlow Customer Service storage (in-memory → PostgreSQL) — critical bug.
-2. Remove dead `DATABASE_SCHEMA_COMPLETE.sql` reference from `tableflow/docker-compose.yml`.
+1. ~~Fix TableFlow Customer Service storage (in-memory → PostgreSQL) — critical bug.~~ ✅ Done 2026-07-22.
+2. ~~Remove dead `DATABASE_SCHEMA_COMPLETE.sql` reference from `tableflow/docker-compose.yml`.~~ ✅ Done 2026-07-22 (regenerated real schema).
 3. Consolidate scanners into `scanner-v3/` as the canonical scanner package with shared modules; archive `_old-scanner`, `_archived`, `weekly-swing-setup-scanner`.
 4. Pick one `auth-service` and one `notification-service`; delete the other.
 5. Scrub secrets from `job-hunter/` and scanner `.env` files.
+6. Convert delivery-service MySQL `?` placeholders to PostgreSQL `$1` syntax (models use `pool.getConnection()` + `connection.execute()` which is mysql2 API, not pg).
 6. Add `requirements.txt` to all Python projects.
