@@ -31,6 +31,7 @@ This workspace holds **16 projects across 3 domains**:
 | `auth-service/` | SaaS | TypeScript + Express | Standalone (may supersede tableflow's) |
 | `notification-service/` | SaaS | JS + Express + Bull | Standalone (may supersede tableflow's) |
 | `portfolio/` | Personal | Next.js 14 | Static site |
+| `scanner-dashboard/` | Trading | Python + Next.js + Docker | **Active (v3 production dashboard)** |
 
 ---
 
@@ -227,6 +228,75 @@ Example paper tracker update output:
 - `config/settings.py` — configuration constants
 - `utils/sector_rotation_v3.py` — self-contained sector rotation (bullish + bearish)
 
+**Momentum continuation strategy — NOT RECOMMENDED (validated 2026-08-03):**
+A "momentum continuation" strategy (uptrend 30%+ in 6mo, pullback 5-10% from 50-day high, volume surge 2-10x, daily gain 2%+, entry at next-day open, 2x ATR stop capped at 8%, target = 50-day high) was backtested and rejected after full validation. Files: `backtest_momentum.py`, `portfolio_sim.py`, `analyze_sector_momentum.py`, `analyze_regime_filter.py`. Results across 60 months / 5 years on full NSE EQ (~2000 stocks) with Rs 50,000 capital, realistic fees (0.03% brokerage + 0.025% STT + 0.1% slippage), next-day entry, liquidity filter:
+
+| Config | Trades | Final | Return | CAGR |
+|---|---|---|---|---|
+| MULTI (4 positions, no filter) | 673 | Rs 19,089 | **-61.8%** | -17.5% |
+| ALL-IN (1 stock at a time) | 197 | Rs 9,385 | **-81.2%** | -28.5% |
+| Top 5 sectors + BULL regime (SMA50+200) | 93 | Rs 63,482 | +27.0% | +4.9% |
+| **Bank FD (7% annual)** | — | **Rs 67,500** | **+35.0%** | **+7.0%** |
+
+The 6-month test showed +15.9% (MULTI) / +49.7% (ALL-IN) — but this was regime luck. Over 5 years the strategy loses money. Root cause: avg loss (-7.7%) > avg win (+6.2%), 51.3% win rate (barely above coin flip). Sector filtering (Auto/Media/Telecom/Energy/Chemicals profitable; Infra/Realty/Textiles/Banking bleeders) and regime filtering (Nifty > SMA50+SMA200, real-time no look-ahead) save it from blowing up but still underperform a bank FD. **Do NOT implement. v3.1 (pattern-based, +1.30% expectancy, PF 1.73, avg loss -3.0%) remains the production edge.**
+
+**Position sizing + regime/sector filter backtest (2026-08-05):**
+3-year backtest on 181 stocks (backbone50 + nifty200) with REAL v3.1 engine (all 15 pattern detectors, ATR stops, re-entry) testing 4 filter combinations × 8 position sizing strategies = 32 configurations. Files: `_backtest_sizing_3yr.py`, `_backtest_full_3yr.py`, `_backtest_winning_detailed.py`, `_optimize_sizing.py`, `_portfolio_sim_10lakh.py`.
+
+Key lesson: **Simplified patterns (3 detectors) lose -47.7%; full v3.1 (15 detectors) gains +15.4%.** The 12 additional pattern detectors (channels, triangles, Darvas, flags, S&R, break-retest, compression) provide the real edge. Never backtest with simplified patterns.
+
+WINNING STRATEGY: **Regime filter (Nifty > SMA50+SMA200) + Sector filter (top 5 hot sectors) + Equal weight sizing + 17 max positions.**
+
+| Config | Trades | Win% | Return | CAGR | Max DD | PF | Sharpe |
+|---|---|---|---|---|---|---|---|
+| **Regime+Sector + Equal** | 431 | 37.8% | **+16.5%** | **+5.2%** | **-2.7%** | **1.56** | — |
+| Baseline (no filter) + Equal | 1192 | 36.7% | +15.4% | +4.9% | -13.4% | 1.49 | — |
+| Regime only + Equal | 607 | 35.3% | +5.7% | +1.9% | -6.0% | 1.42 | — |
+| Sector only + Top8 | 710 | 35.5% | +14.6% | +4.6% | -10.6% | 1.35 | — |
+
+Detailed breakdown of winning strategy (431 trades, 3 years):
+- Year-by-year: 2024 +7.4% (226 trades), 2025 +15.9% (173 trades), 2026 +16.5% (32 trades) — profitable every year
+- Best month: Jun 2025 +7.0% (76.5% win rate); Worst: Mar 2024 -1.82%
+- By pattern: Cup & Handle 78% of trades, +Rs 19,847 profit (workhorse); Re-entry 13 trades, 46.2% WR, +1.43% avg
+- By exit: Time Exit (45d) +8.13% avg (93.8% WR), Target 1 +5.92% (89.2% WR), Target 2 +4.34% (80% WR), Stop Loss -3.2% avg
+- By sector: Infra +Rs 5,289, Auto +Rs 3,746, Pharma +Rs 3,557 (best); PSU Bank -Rs 1,120 (worst, 22% WR)
+- Max drawdown only -2.7% (43-day period Apr-Jun 2025); 6 DD periods >1% in 3 years
+- Avg win +7.5%, avg loss -2.8% (2.7x asymmetric R:R); avg days held 15; best trade BEL.NS +34.8%
+
+Position sizing findings:
+- **Equal weight is BEST** (+16.5% with regime+sector). Fancy sizing (score-weighted, R:R-weighted, momentum-weighted) all performed WORSE.
+- **Concentration (Top 5/8/10) does NOT help** — more concentration = bigger drawdowns, no return improvement.
+- **Risk-parity has lowest drawdown** (-1.5% with regime+sector) but lower return (+9.0%). Use for capital preservation.
+- **R:R-weighting is the WORST** — it over-allocates to high-risk setups that often stop out.
+- **Momentum-weighting (4-day test "winner") is misleading** — over 3 years it's 5th worst (-46.9% without filters). Chasing recent winners = buying at peaks.
+
+**Current regime: BEAR** (Nifty 24,625 below SMA200 24,772 as of Aug 5, 2026). Backtest shows regime filter is critical — BEAR regime trades have lower returns and higher drawdowns. Consider smaller position sizes or wait for Nifty to recover above 24,772.
+
+**Paper tracker status (Aug 5, 2026):** 31 picks total, 23 open trades (20 in profit, 0 losses), 7 waiting breakout, 1 win (SPANDANA at T1). Avg P&L +2.72%, best NAZARA +10.73%, GENESYS re-entry +10.03% in 2 days (validates whipsaw recovery). TECHM.NS added (real buy at Rs 1,589, now +3.84%, 20 shares). Waiting list: TATAPOWER (-0.62% from BO), KANSAINER (-1.11%, +5.76% today on 4.6x vol), SAPPHIRE (-1.24%, +5.31% today on 6.1x vol) — closest to breakout.
+
+**Chart image analysis — vision model (2026-08-05):**
+Claude Sonnet 4.6 1M (current Devin CLI model) supports image viewing via the `read` tool on local image files. Save screenshots to disk, provide the file path. For other vision models: Claude 3.5 Sonnet / Opus (claude.ai), GPT-4o (ChatGPT), Gemini 1.5 Pro (Google AI Studio).
+
+**Lessons learned from 8 TradingView chart screenshots (2026-08-05) — techniques NOT yet in v3.1:**
+
+1. **"% of measured move done" progress tracker** — chart author annotates "20% Move Done, 20% Left" / "15% Move Done 15% Left" / "35% Up From Our Zone". For every open trade and NEAR pick, calculate: `pct_done = (cmp - breakout) / measured_move * 100` and `pct_left = 100 - pct_done`. This tells you how much upside remains. **TODO: add to paper tracker update output and Telegram alerts.**
+
+2. **Historical resistance as target (not just measured move math)** — Deep Industries target was "600 to 640" = prior resistance zone from Nov 2024 highs, NOT the formula `breakout + (breakout - cup_low)`. When prior resistance is clearly visible, use it as the target instead. **TODO: in scoring, check if a prior resistance zone exists near the measured-move target — if yes, use the zone as T2 (more realistic); if resistance is BELOW measured move, use resistance as T1.**
+
+3. **Double confirmation — Channel + S&R zone breakout simultaneously** — Tilaknagar broke above BOTH the descending channel upper trendline AND a flat horizontal S&R zone (440 band) on the same candle. This is a stronger signal than either alone. Current v3.1 only returns the first matched pattern. **TODO: detect when channel + S&R breakout coincide (within 2% of each other) and add a "double breakout" bonus (+15 score) to both.**
+
+4. **"Breakout Sustained" confirmation** — Tilaknagar chart explicitly labeled "Breakout Sustained" after the stock held above the breakout zone for 2+ weeks. Current v3.1 enters on the breakout candle. **TODO: in paper tracker, add a SUSTAINED flag when an OPEN trade has been above its breakout level for ≥10 trading days — these have higher follow-through probability.**
+
+5. **Nested / multi-scale cup patterns** — Deep Industries shows a large weekly cup (Nov 2025 - May 2026, ~320 bottom) with a smaller secondary cup (handle region) forming within the right side of the larger cup. This nested structure means the smaller cup breakout is the actual entry trigger for the larger cup's measured move. Current v3.1 sweeps multiple cup lengths but doesn't explicitly detect nesting. **TODO: if two cup lengths are detected on the same stock (e.g., 120-bar and 40-bar), flag as NESTED and boost score +10.**
+
+6. **Monthly C&H neckline = horizontal flat line at prior ATH** — Nazara and Thyrocare both show the neckline drawn as a FLAT horizontal line at the prior cycle peak, not a diagonal. This is the classical Bulkowski definition. v3.1's monthly C&H already uses linear regression on left/right thirds — verify the neckline approximates horizontal for monthly patterns. A near-horizontal neckline (slope < 5%) should add +5 score.
+
+7. **Target annotation style for Telegram** — The charts annotate targets as "X to Y" range (e.g., "600 To 640", "264.15 To 330.95") showing both T1 and T2 together. Current Telegram output shows T1 and T2 separately. **TODO: format Telegram alerts as "Target: Rs 595 to Rs 679" on one line.**
+
+8. **Upside % remaining drives conviction** — "20% Left" vs "35% Up From Zone" changes the decision (enter vs hold vs skip). Stocks with >15% remaining measured move = more conviction to enter. Stocks with <8% remaining = skip or hold only. **TODO: add `upside_remaining_pct` to scanner output and filter: skip NEAR picks if upside remaining < 10%.**
+
+Stocks from charts: NAZARA (tracker, hold), THYROCARE (near BO at 617, weekly C&H, Pharma RISING), TI/Tilaknagar (near BO at 511, daily C&H score 72, double confirmation), FSL/Firstsource (already ran +27%), DEEPIND (already ran +35% — case study). TI.NS ticker = `TI.NS` on Yahoo Finance.
+
 ### `weekly-swing-setup-scanner/` — Simplified weekly scanner
 Subset of scanner-v2: no monthly TF, no WATCH tier, no diagonal neckline, single target. **Candidate for archival** — no unique features vs scanner-v2.
 
@@ -311,6 +381,130 @@ python intraday_scanner.py --no-sectors     # skip sector breakdown
 
 ### `_old-scanner/`, `_archived/` — Archived versions
 Frozen v6.0 and v5.0. Reference only. Do not modify.
+
+---
+
+### `scanner-dashboard/` — Full-stack web dashboard for scanner-v3 (production)
+
+Built on scanner-v3 (proven +1.30% expectancy/trade engine). Full-stack web app: FastAPI backend + Next.js frontend + arq worker + PostgreSQL + Redis, fully containerized with Docker Compose. **GitHub: https://github.com/karthik0419/scanner-dashboard**
+
+**Architecture (5 Docker containers):**
+
+| Container | Image | Port | Purpose |
+|---|---|---|---|
+| `postgres` | postgres:16-alpine | 5433 | Database (scans, picks, users, alerts, tracker) |
+| `redis` | redis:7-alpine | 6380 | Task queue (arq jobs) |
+| `backend` | scanner-dashboard-backend | 8000 | FastAPI REST API (auth, scans, picks, screens, tracker, market, charts) |
+| `worker` | scanner-dashboard-worker | — | arq worker (runs scanner.py as subprocess, killable) |
+| `frontend` | scanner-dashboard-frontend | 3001 | Next.js 14 dashboard (light theme, Stripe/Notion style) |
+
+**Key features:**
+- **7 one-click scan presets** (matching .bat menu): Smart Daily, Full + Price Filter, Full NSE, Daily Patterns, Weekly Patterns, Bearish, Quick Test
+- **PEAD scanner** — Post-Earnings Announcement Drift scanner integrated (4 presets: Weekly, Daily, Discovery, High Conviction). Scans screener.in for earnings setups. Separate API at `/api/pead/`.
+- **Custom scan form** — top, min score, SL mode (ATR/original), price range, stock list (Backbone 50, Nifty 500), timeframe, smart/bearish/test toggles
+- **Kill/cancel running scans** — kills scanner.py subprocess without killing the worker (fixed `taskkill /F /PID` without `/T`)
+- **Scan results** — same picks as local .bat (verified identical: same stocks, scores, patterns, R:R, targets)
+- **Paper tracker** — track live picks, auto-update prices, re-entry after whipsaw
+- **Saved screens** — save/load custom filter combinations
+- **Market overview** — sector heat map, breadth indicators
+- **Collapsible sidebar** — click chevron to expand/collapse, persists to localStorage, hover to reveal toggle
+- **Per-page instructions** — collapsible/dismissible help banners on all 7 dashboard pages (Overview, Scans, PEAD, Screens, Tracker, Market, Settings). Persists dismissal to localStorage.
+- **Guest login** — auto-created guest user (guest@guest.com / guest) on backend startup. "Try as Guest" button on login page for anyone to explore without registering.
+- **Auth** — JWT-based, register/login, per-user data isolation
+- **Light theme UI** — white backgrounds, indigo accents, accessible (aria-labels, keyboard nav, focus rings)
+- **Auto-restart** — all 3 app containers have `restart: unless-stopped`
+- **Worker health endpoint** — `GET /api/scans/health/worker` checks if arq worker is alive via Redis
+- **scanner-v3 + earnings-momentum-scanner baked into image** — no external folder mount needed, fully self-contained
+
+**Scanner engine integration:**
+- Backend runs `scanner.py` as a subprocess (same as .bat files)
+- `--no-notify --no-sync` flags added (dashboard handles notifications/tracker separately)
+- `--sl-mode atr` explicitly passed (same as scanner-v3 default)
+- scanner-v3 source code is copied into the Docker image at build time (`COPY scanner-v3 /scanner-v3`)
+- Results CSV parsed and stored in PostgreSQL as individual Pick records
+
+**Docker Compose commands:**
+```powershell
+cd F:\projects\claude\scanner-dashboard
+
+docker compose up -d              # Start all 5 containers
+docker compose down               # Stop all 5 containers
+docker compose restart            # Restart all containers
+docker compose logs -f backend    # Watch backend logs
+docker compose logs -f worker     # Watch worker logs
+docker compose ps                 # See running containers
+docker compose build              # Rebuild images after code changes
+docker compose up -d --build      # Rebuild + restart
+```
+
+**Or just double-click `start-all.bat`** — runs `docker compose up -d` and shows status.
+
+**To deploy on another laptop:**
+1. Install Docker Desktop
+2. Copy `scanner-dashboard/` folder
+3. Run `docker compose up -d`
+4. Open `http://localhost:3001/login`
+
+**Login:** `kartik@scanner.io` / `kartik` (or register a new account)
+
+**Key files:**
+- `docker-compose.yml` — 5-container orchestration (postgres, redis, backend, worker, frontend)
+- `backend/Dockerfile` — Python 3.11 + FastAPI + scanner-v3 + earnings-momentum-scanner baked in
+- `frontend/Dockerfile` — Node 20 + Next.js 14 (multi-stage build)
+- `backend/app/main.py` — FastAPI app entry point
+- `backend/app/routers/scans.py` — scan trigger, list, detail, cancel, worker health
+- `backend/app/routers/pead.py` — PEAD scan trigger, list, detail, cancel, picks
+- `backend/app/routers/picks.py` — pick listing + stats
+- `backend/app/routers/tracker.py` — paper trade tracker
+- `backend/app/routers/screens.py` — saved screens
+- `backend/app/routers/market.py` — market overview
+- `backend/app/routers/charts.py` — chart generation
+- `backend/app/routers/auth.py` — JWT auth
+- `backend/app/services/scanner_service.py` — scanner.py + PEAD scanner.py subprocess runner
+- `backend/app/services/worker.py` — arq worker (run_scan_job + run_pead_scan_job)
+- `backend/app/models.py` — SQLAlchemy models (Scan, Pick, PeadScan, PeadPick, User, Alert, SavedScreen, PaperTrade)
+- `frontend/app/dashboard/layout.tsx` — collapsible sidebar layout
+- `frontend/app/dashboard/scans/page.tsx` — scans page with 7 presets + custom form + kill button
+- `frontend/app/dashboard/pead/page.tsx` — PEAD scanner page with 4 presets + picks table
+- `frontend/lib/api.ts` — API client (typed, all endpoints including PEAD)
+- `frontend/tailwind.config.ts` — light theme design system
+- `start-all.bat` — one-click Docker Compose startup
+
+**Tech stack:**
+- Backend: Python 3.11, FastAPI, SQLAlchemy, arq, PostgreSQL, Redis, JWT, bcrypt
+- Frontend: Next.js 14, TypeScript, Tailwind CSS, Lucide icons, Sonner toasts
+- Infra: Docker Compose, 5 containers, auto-restart, health checks
+- Scanner: scanner-v3 (v3.1 engine, 2.0x ATR, 8% stop cap, re-entry)
+
+**Docker image optimization (2026-08-07):**
+- Frontend: 709MB → 224MB (68% smaller) — Next.js standalone output mode, multi-stage build, no node_modules in runtime
+- Backend/Worker: 1.15GB → 784MB each (32% smaller) — multi-stage build, Python venv copied from builder, no gcc/g++/dev headers in runtime
+- Total: 3.0GB → 1.79GB (40% reduction)
+- Health checks on all 5 containers (backend /api/health, worker arq import check, frontend node http check, postgres pg_isready, redis ping)
+- Memory limits: postgres 512M, redis 128M, backend 512M, worker 1G, frontend 256M
+- Frontend depends_on backend with `condition: service_healthy`
+
+**Disk cleanup (2026-08-07):**
+- Docker WSL2 disk moved to D:\DockerData (via symlink from C: → D:)
+- Downloads folder moved to D:\Downloads (via junction point)
+- Android SDK deleted (not in use)
+- Docker build cache cleaned (12.3 GB freed)
+- C: drive freed: 40.8 GB → 75.5 GB free (+34.7 GB)
+
+**Paper tracker status (2026-08-07):**
+- 31 total picks, 21 open trades, 7 waiting for breakout
+- 17/21 in profit, avg P&L +2.48%, total P&L +52.05%
+- Best: NAZARA.NS +12.02%, Worst: FEDERALBNK.NS -1.44%
+- 1 win (SPANDANA.NS T1 hit), 2 losses (RECLTD -2.41%, GENESYS -3.86%)
+- Closest to breakout: KANSAINER.NS (-0.76%), TATAPOWER.NS (-1.76%), ZOMATO.NS (-2.27%)
+
+**Phone/LAN login fix (2026-08-09):**
+- **Symptom:** login from phone (same WiFi, PC LAN IP `192.168.1.10:3001`) failed; appeared to work on desktop only.
+- **Root cause:** Next.js bakes `rewrites()` into `routes-manifest.json` at **build** time. `frontend/next.config.js` resolves the `/api/*` proxy destination as `process.env.API_URL || process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'`. During `docker build`, only `NEXT_PUBLIC_API_URL` was a build arg — `API_URL` was unset in the builder stage, so the fallback `http://localhost:8000` got frozen into the manifest. At runtime the compose `environment:` sets `API_URL=http://backend:8000`, but that's too late. Every proxied `/api/*` call hit `localhost:8000` inside the container → `ECONNREFUSED 127.0.0.1:8000` → 500. This actually broke login from **all** devices (desktop too); the phone was just where it was first noticed.
+- **Fix:** `frontend/Dockerfile` — added `ARG API_URL=http://backend:8000` + `ENV API_URL=$API_URL` in the **builder** stage so `next.config.js` reads it during `next build`. Removed the stale runtime `ENV NEXT_PUBLIC_API_URL=http://localhost:8000` (no-op for the client bundle; only caused confusion). `docker-compose.yml` — added `API_URL: http://backend:8000` to the frontend service's `build.args`.
+- **Verified:** `routes-manifest.json` now shows `destination: http://backend:8000/api/:path*`. Login 200 from both `localhost:3001` and `192.168.1.10:3001`; `/api/auth/me` with bearer token 200 from LAN IP. Frontend logs clean (no ECONNREFUSED).
+- **Reusable lesson:** Next.js `rewrites()` destinations are baked at **build** time. Any env var the `rewrites()` function reads must be a Docker `ARG`/`ENV` in the **builder** stage — compose `environment:` at runtime is too late. A baked `localhost` destination is the classic "works on desktop, breaks on phone/LAN" trap.
+- **Session log:** `scanner-dashboard/SESSION_LOG.md` (full investigation trace).
 
 ---
 
