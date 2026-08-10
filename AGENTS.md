@@ -546,11 +546,46 @@ running, then restore SwingU after. So:
 | Weekly scan header text | `scanner-v3/telegram_notify.py` (line ~98, `SCANNER v3.1`) | scanner-v3 |
 | Which bot the cron uses | `scanner-v3/.env.swingiq` (token + chat ID) | scanner-v3 |
 | Which bot manual CLI uses | `scanner-v3/.env` (token + chat ID) | scanner-v3 |
-| Cron schedule | Windows Task Scheduler → `auto_daily_scan.bat` / `auto_weekly_scan.bat` | scanner-v3 |
+| Cron schedule | Windows Task Scheduler → see cron table below | scanner-v3 |
 | Dashboard web UI | `scanner-dashboard/frontend/app/` (Next.js pages) | scanner-dashboard |
 | Dashboard API | `scanner-dashboard/backend/app/` (FastAPI routers) | scanner-dashboard |
 | Dashboard Telegram settings | `scanner-dashboard/frontend/app/dashboard/settings/page.tsx` | scanner-dashboard |
 | PEAD scanner format | `earnings-momentum-scanner/scanner.py` | earnings-momentum-scanner |
+
+### Cron jobs (Windows Task Scheduler)
+
+| Task name | Schedule | Runs | Bot | Status |
+|---|---|---|---|---|
+| `SwingIQ_DailyScan` | Daily 08:30 IST | `scanner-v3\auto_daily_scan.bat` → `python daily_scan.py --top 15` | SwingIQ (swapped via .bat) | **Active** — last ran 10 Aug, result 0 (success) |
+| `SwingIQ_WeeklyScan` | Saturdays 09:00 IST | `scanner-v3\auto_weekly_scan.bat` → `python scanner.py` | SwingIQ (swapped via .bat) | **Active** — first run Sat 15 Aug |
+
+**Deleted (2026-08-09):** `NSE Swing Screener` (Mon-Fri 08:30) — stale task
+from May 2026 pointing to dead path
+`C:\Users\91814\Desktop\claude\enhanced-swing-trading-screener\run_screener.bat`
+(workspace migrated to `F:\projects\claude\` in Jul 2026). Was failing silently
+every weekday with result code 1 (file not found). Fully replaced by
+`SwingIQ_DailyScan`.
+
+**Power management note:** Both tasks have "Stop On Battery Mode, No Start On
+Batteries" enabled — they will NOT run if the laptop is on battery. Keep it
+plugged in for the 08:30 daily scan to fire.
+
+**To manage cron jobs:**
+```powershell
+# View tasks
+schtasks /query /tn "\SwingIQ_DailyScan" /fo LIST /v
+schtasks /query /tn "\SwingIQ_WeeklyScan" /fo LIST /v
+
+# Run a task manually (test)
+schtasks /run /tn "\SwingIQ_DailyScan"
+
+# Disable/enable a task
+schtasks /change /tn "\SwingIQ_DailyScan" /disable
+schtasks /change /tn "\SwingIQ_DailyScan" /enable
+
+# Check last result (0 = success, 1 = failed)
+schtasks /query /tn "\SwingIQ_DailyScan" /fo LIST /v | findstr "Last Result"
+```
 
 ### Key distinction: scanner-v3 vs scanner-dashboard
 
