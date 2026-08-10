@@ -508,6 +508,68 @@ docker compose up -d --build      # Rebuild + restart
 
 ---
 
+## SwingIQ Naming Map (2026-08-09)
+
+**SwingIQ** is the product/channel name. The code projects still use their
+original folder/repo names (`scanner-v3`, `earnings-momentum-scanner`,
+`scanner-dashboard`). This map clarifies which project does what, which
+Telegram bot each uses, and where to make changes.
+
+### Two Telegram bots
+
+| Bot | .env file | Chat ID | Purpose |
+|---|---|---|---|
+| **SwingU** | `scanner-v3/.env` (default) | `TELEGRAM_CHAT_ID_REDACTED` (private chat) | **Testing** — manual CLI runs (`python daily_scan.py`) |
+| **SwingIQ** | `scanner-v3/.env.swingiq` | `-1004275742331` (channel) | **Production** — automated cron scans (Task Scheduler) |
+
+`auto_daily_scan.bat` / `auto_weekly_scan.bat` swap `.env` → SwingIQ before
+running, then restore SwingU after. So:
+- You typing in terminal → message goes to **SwingU** (private)
+- Cron/Task Scheduler → message goes to **SwingIQ** (channel)
+
+### Where each project fits
+
+| Project | Folder | What it does | Telegram header | Bot | Rebranded? |
+|---|---|---|---|---|---|
+| scanner-v3 (daily) | `scanner-v3/` | Daily morning scan (volume + sectors) | `📊 SwingIQ Daily Scan` | SwingU/SwingIQ (swapped) | **Yes** (2026-08-09) |
+| scanner-v3 (weekly) | `scanner-v3/` | Weekly swing setup scan (patterns) | `📊 SCANNER v3.1` | SwingU/SwingIQ (swapped) | **No** — still old name |
+| earnings-momentum-scanner | `earnings-momentum-scanner/` | PEAD scanner (post-earnings drift) | `EARNINGS MOMENTUM SCANNER` | Unknown (separate .env?) | **No** |
+| scanner-dashboard | `scanner-dashboard/` | Web UI (Next.js + FastAPI + Docker) | N/A (has own Telegram settings) | N/A | **No** (no SwingIQ branding in UI) |
+
+### Where to make changes (cheat sheet)
+
+| You want to change... | Edit this file | In this project |
+|---|---|---|
+| Daily scan Telegram format | `scanner-v3/daily_scan.py` (`_fmt_pick`, `_build_telegram_summary`) | scanner-v3 |
+| Daily scan header text | `scanner-v3/daily_scan.py` (line ~826, `header = f"📊 SwingIQ Daily Scan..."`) | scanner-v3 |
+| Weekly scan Telegram format | `scanner-v3/telegram_notify.py` (`format_message`) | scanner-v3 |
+| Weekly scan header text | `scanner-v3/telegram_notify.py` (line ~98, `SCANNER v3.1`) | scanner-v3 |
+| Which bot the cron uses | `scanner-v3/.env.swingiq` (token + chat ID) | scanner-v3 |
+| Which bot manual CLI uses | `scanner-v3/.env` (token + chat ID) | scanner-v3 |
+| Cron schedule | Windows Task Scheduler → `auto_daily_scan.bat` / `auto_weekly_scan.bat` | scanner-v3 |
+| Dashboard web UI | `scanner-dashboard/frontend/app/` (Next.js pages) | scanner-dashboard |
+| Dashboard API | `scanner-dashboard/backend/app/` (FastAPI routers) | scanner-dashboard |
+| Dashboard Telegram settings | `scanner-dashboard/frontend/app/dashboard/settings/page.tsx` | scanner-dashboard |
+| PEAD scanner format | `earnings-momentum-scanner/scanner.py` | earnings-momentum-scanner |
+
+### Key distinction: scanner-v3 vs scanner-dashboard
+
+- **scanner-v3** (`F:\projects\claude\scanner-v3`) = the CLI tool. Runs via
+  terminal or cron. Generates Telegram alerts directly. This is where the
+  SwingIQ daily/weekly message format lives.
+- **scanner-dashboard** (`F:\projects\claude\scanner-dashboard`) = the web app.
+  Has its own embedded copy of scanner-v3 (baked into Docker image). Triggers
+  scans from the browser. Has its own Telegram settings (per-user chat ID in
+  the Settings page). Does NOT use the SwingIQ bot — it uses whatever token
+  is in its own `backend/.env`.
+
+**Do not conflate the two.** Changes to `scanner-v3/daily_scan.py` affect the
+cron-generated Telegram alerts. They do NOT affect the dashboard unless you
+also rebuild the dashboard's Docker images (which bake in their own copy of
+scanner-v3). The dashboard's Telegram notifications are separate.
+
+---
+
 ## Domain 2 — Job Hunter
 
 Automated job application system for Kartik's DevOps/SRE profile. Scrapes LinkedIn, Naukri, Indeed, Instahyre, + 24 Finnish companies → scores → applies via Workday/LinkedIn Easy Apply/Oracle ORC → SQLite tracker → Telegram alerts.
