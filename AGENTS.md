@@ -4,12 +4,16 @@ Workspace root: `F:\projects\claude`
 Owner: Kartik Bandewar (DevOps/SRE engineer, Pune, India)
 Platform: Windows (PowerShell). Python projects use `python` (not `python3`).
 
-This workspace holds **16 projects across 3 domains**:
+This workspace holds **18 projects across 5 domains**:
 1. Stock trading screeners (Python)
 2. Job-hunting automation (Python + Chrome extension)
 3. Restaurant POS SaaS — TableFlow (Node.js microservices)
+4. E-commerce automation (Python + AI)
+5. KDP publishing (Python + AI)
 
 > **Workspace layout (2026-07-18):** The root `F:\projects\claude` is a clean container — only `AGENTS.md`, `interview-prep.md`, and per-project subfolders live here. No loose project files at root. The root `.git` tracks the `earnings-momentum-scanner/` subfolder (commit `4430bda` restructured loose root files into that subfolder). The duplicate `earnings-scanner/` clone was removed (byte-identical to `earnings-momentum-scanner/`). All other project subfolders are untracked.
+
+> **Front-end development (2026-08-24):** 5 custom skills installed in `C:\Users\91814\.claude\skills\` for building professional web pages. These skills are **auto-invoked** - whenever building any web page, all best practices (responsive, accessible, modern design, Tailwind CSS, React) are applied automatically without mentioning them. User just says "build X" and gets production-ready code.
 
 ---
 
@@ -20,6 +24,7 @@ This workspace holds **16 projects across 3 domains**:
 | `scanner/` | Trading | Python | Active (v6.0+) |
 | `scanner-v2/` | Trading | Python | Active (enhanced C&H) |
 | `scanner-v3/` | Trading | Python | **Active (v3 production)** |
+| `scanner-us/` | Trading | Python | **Active (US market — v2.0 MTF confirmation)** |
 | `weekly-swing-setup-scanner/` | Trading | Python | Redundant — candidate for archival |
 | `earnings-momentum-scanner/` | Trading | Python | Active (PEAD strategy) — tracked by root git |
 | `scanner-training/` | Trading | Python | Support (validation/tuning) |
@@ -32,6 +37,8 @@ This workspace holds **16 projects across 3 domains**:
 | `notification-service/` | SaaS | JS + Express + Bull | Standalone (may supersede tableflow's) |
 | `portfolio/` | Personal | Next.js 14 | Static site |
 | `scanner-dashboard/` | Trading | Python + Next.js + Docker | **Active (v3 production dashboard)** |
+| `amazon-image-agent/` | E-commerce | Python + Krea AI MCP | Paused (Krea is paid) |
+| `kdp-coloring-pipeline/` | KDP Publishing | Python + AI | **Active (Book #1 ready)** |
 
 ---
 
@@ -522,17 +529,110 @@ Telegram bot each uses, and where to make changes.
 | **SwingU** | `scanner-v3/.env` (default) | `TELEGRAM_CHAT_ID_REDACTED` (private chat) | **Testing** — manual CLI runs (`python daily_scan.py`) |
 | **SwingIQ** | `scanner-v3/.env.swingiq` | `-1004275742331` (channel) | **Production** — automated cron scans (Task Scheduler) |
 
-`auto_daily_scan.bat` / `auto_weekly_scan.bat` swap `.env` → SwingIQ before
-running, then restore SwingU after. So:
-- You typing in terminal → message goes to **SwingU** (private)
-- Cron/Task Scheduler → message goes to **SwingIQ** (channel)
+`auto_daily_scan.bat` / `auto_weekly_scan.bat` use `--env-file .env.swingiq`
+flag (no .env swapping needed). So:
+- You typing in terminal → message goes to **SwingU** (private, default `.env`)
+- Cron/Task Scheduler → message goes to **SwingIQ** (channel, `.env.swingiq`)
+
+**Bat files in scanner-v3/ (2026-08-12 cleanup):**
+- `auto_daily_scan.bat` — cron daily scan (SwingIQ, Task Scheduler). Shows
+  header on screen + full output to log. No pause (cron job).
+- `auto_weekly_scan.bat` — cron weekly scan (SwingIQ, Task Scheduler). Same.
+- `daily_scan_test.bat` — manual daily scan (SwingU, private chat). Shows
+  full real-time output on screen + `pause` at end. (Fixed: was blank when
+  double-clicked — all output was redirected to log only.)
+- `weekly_scan_test.bat` — manual weekly scan (SwingU, private chat). Same fix.
+- `Daily Scan.bat` — interactive menu (22 options, SwingU)
+- `run_weekly.bat` — interactive menu (24 options, SwingU)
+- **Deleted:** `daily_scan_prod.bat`, `weekly_scan_prod.bat` (duplicates of
+  `auto_*` versions), `.env.swingu_backup` (leftover from old swap approach)
+- **Restored from `_archive/`:** `_daily_scan_enhanced.py`,
+  `_tracker_status.py` (were missing — menu options 20-21 / 22-23 were broken)
+
+**Bug fixes (2026-08-12):**
+- `paper_tracker.py` — added `sys.stdout.reconfigure(encoding='utf-8')` (was
+  missing — em-dash in output broke UTF-8 consumers on Windows when piped)
+- `rank_2week.py` — was hardcoded to `v3_2026-07-29.csv` (stale). Now uses
+  `glob` to find latest `v3_*.csv` and latest `backtest_v3*.csv` dynamically.
+  Hardcoded summary section replaced with dynamic generation from ranked data.
+  Also added UTF-8 encoding fix.
+
+**Stale files cleaned up (2026-08-12):**
+- 28 files moved to `_archive/stale_2026-08-12/`: `test_*.txt` (11 test
+  captures), `*_today.txt` / `*_output.txt` / `*_results.txt` (stale output
+  captures), `SESSION_2026-07-19.md` (old session notes), `inkling_*.md`
+  (3 one-off AI review files), `COMMIT_MSG.txt`, `vedl_*.txt`, etc.
+- Root directory now has only: `backbone50.txt`, `nifty200.txt`,
+  `nifty500.txt`, `requirements.txt`, `COMPARISON_REPORT.md`, `README.md`,
+  `VERSION.md` (+ Python scripts + bat files + dirs)
+
+**End-to-end test results (2026-08-12, all 14 scripts tested):**
+
+| Script | Status | Notes |
+|---|---|---|
+| `daily_scan.py` | PASS | 507 stocks, 8 volume surges, ~30s |
+| `scanner.py --test` | PASS | 44 stocks, 20 setups, ~1 min |
+| `paper_tracker.py status` | PASS | 144 picks, 53 open, 6 closed (encoding fixed) |
+| `paper_tracker.py summary` | PASS | 0% win rate, -1.63% expectancy on closed |
+| `_tracker_status.py` | PASS | Telegram sent to SwingU, 53 open, 75 waiting |
+| `gen_charts.py` | PASS | 30 charts (10 stocks × 3 timeframes) |
+| `rank_2week.py` | PASS | Now loads latest CSV dynamically (was hardcoded) |
+| `_daily_scan_enhanced.py` | PASS | 181 stocks, 111 picks, ~5 min, Telegram sent |
+| `backtest.py` | PASS | 376 trades, 46% WR, PF 3.05, Exp +3.26%, ~2 min |
+| `compare_backtest.py` | PASS | v3 vs v2: v3 better DD (-32% vs -43%), ~4 min |
+| `sweep_atr.py` | PASS | 2.0x ATR best (PF 2.22, DD -50.8%), ~5 min |
+| `whipsaw_analysis.py` | PASS | 27.1% whipsaw rate, 82.9% went lower, ~3 min |
+| `sector_rotation_v3` | PASS | Auto BOOM, Energy/FMCG/Infra weak |
+| `telegram_notify.py` | PASS | Sent via SwingU bot from .env |
+
+**Automated test suite (`test_fixes.py`):**
+```powershell
+cd F:\projects\claude\scanner-v3
+python test_fixes.py              # run all 65 tests (validates all 2026-08-12 fixes)
+python test_fixes.py --verbose    # show full output
+```
+Validates: bat files not blank, encoding fix, rank_2week dynamic CSV, restored
+scripts, deleted files, stale files archived, cron battery restrictions, Telegram
+bot wiring, all imports, menu bat options, daily cron 2-step flow, freshness
+tracking. Exit code 0 = all pass.
+
+**Daily cron 2-step flow (2026-08-12):**
+The daily cron (`auto_daily_scan.bat`) now runs TWO steps instead of one:
+1. `scanner.py --smart --no-notify` — fresh pattern scan on smart universe
+   (Backbone50 + Nifty500 + hot sector stocks, ~500-800 stocks, 5-8 min).
+   Generates `results/v3_YYYY-MM-DD.csv` with today's fresh picks.
+2. `daily_scan.py` — volume movers + loads the fresh CSV from step 1 (30 sec).
+   Posts combined message to SwingIQ Telegram channel.
+
+This means **pattern setups are now fresh every day**, not stale from last
+Saturday's weekly scan. Total cron time: ~6-9 min (within 8:30-9:15 AM window).
+The `daily_scan_test.bat` (manual, SwingU) also uses this 2-step flow.
+
+**Freshness tracking (2026-08-12):**
+Each pattern setup in the Telegram message now shows a freshness badge:
+- `🆕 NEW` — stock appears for the first time in recent scans (not in previous
+  7 CSVs)
+- `🔁 Day N` — stock has appeared in N consecutive daily scans (including today)
+
+The PATTERN SETUPS header also shows a count: `(6 new, 4 repeating)`.
+This makes it easy to see which picks are fresh opportunities vs which are
+being tracked from previous days. Implementation: `_compute_freshness()` in
+`daily_scan.py` compares the current CSV against previous `v3_*.csv` files.
+
+**Why daily scan messages looked similar across days (FIXED 2026-08-12):**
+**Root cause:** The PATTERN SETUPS section loaded from a weekly scan CSV that
+only updated on Saturdays. Mon-Fri showed the same 10 stocks.
+**Fix:** The daily cron now runs `scanner.py --smart` before `daily_scan.py`,
+generating fresh pattern picks every day. Additionally, each pick shows a
+freshness badge (🆕 NEW / 🔁 Day N) so you can see which stocks are new today
+vs repeating from previous days.
 
 ### Where each project fits
 
 | Project | Folder | What it does | Telegram header | Bot | Rebranded? |
 |---|---|---|---|---|---|
-| scanner-v3 (daily) | `scanner-v3/` | Daily morning scan (volume + sectors) | `📊 SwingIQ Daily Scan` | SwingU/SwingIQ (swapped) | **Yes** (2026-08-09) |
-| scanner-v3 (weekly) | `scanner-v3/` | Weekly swing setup scan (patterns) | `📊 SCANNER v3.1` | SwingU/SwingIQ (swapped) | **No** — still old name |
+| scanner-v3 (daily) | `scanner-v3/` | Daily morning scan (volume + sectors) | `📊 SwingIQ Daily Scan` | SwingU/SwingIQ (via --env-file) | **Yes** (2026-08-09) |
+| scanner-v3 (weekly) | `scanner-v3/` | Weekly swing setup scan (patterns) | `📊 SCANNER v3.1` | SwingU/SwingIQ (via --env-file) | **No** — still old name |
 | earnings-momentum-scanner | `earnings-momentum-scanner/` | PEAD scanner (post-earnings drift) | `EARNINGS MOMENTUM SCANNER` | Unknown (separate .env?) | **No** |
 | scanner-dashboard | `scanner-dashboard/` | Web UI (Next.js + FastAPI + Docker) | N/A (has own Telegram settings) | N/A | **No** (no SwingIQ branding in UI) |
 
@@ -556,8 +656,9 @@ running, then restore SwingU after. So:
 
 | Task name | Schedule | Runs | Bot | Status |
 |---|---|---|---|---|
-| `SwingIQ_DailyScan` | Daily 08:30 IST | `scanner-v3\auto_daily_scan.bat` → `python daily_scan.py --top 15` | SwingIQ (swapped via .bat) | **Active** — last ran 10 Aug, result 0 (success) |
-| `SwingIQ_WeeklyScan` | Saturdays 09:00 IST | `scanner-v3\auto_weekly_scan.bat` → `python scanner.py` | SwingIQ (swapped via .bat) | **Active** — first run Sat 15 Aug |
+| `SwingIQ_DailyScan` | Daily 08:30 IST | `scanner-v3\auto_daily_scan.bat` → `python daily_scan.py --top 15 --max-price 5000 --env-file .env.swingiq` | SwingIQ (via --env-file) | **Active** — last ran 12 Aug, result 0 (success) |
+| `SwingIQ_WeeklyScan` | Saturdays 09:00 IST | `scanner-v3\auto_weekly_scan.bat` → `python scanner.py --max-price 5000 --env-file .env.swingiq` | SwingIQ (via --env-file) | **Active** — first run Sat 15 Aug |
+| `SwingIQ_TrackerUpdate` | Daily 09:15 IST | `scanner-v3\auto_tracker_update.bat` → `python paper_tracker.py update` + `python tracker_alert.py --env-file .env.swingiq` | SwingIQ (via --env-file) | **Active** — created 28 Aug 2026 |
 
 **Deleted (2026-08-09):** `NSE Swing Screener` (Mon-Fri 08:30) — stale task
 from May 2026 pointing to dead path
@@ -566,9 +667,10 @@ from May 2026 pointing to dead path
 every weekday with result code 1 (file not found). Fully replaced by
 `SwingIQ_DailyScan`.
 
-**Power management note:** Both tasks have "Stop On Battery Mode, No Start On
-Batteries" enabled — they will NOT run if the laptop is on battery. Keep it
-plugged in for the 08:30 daily scan to fire.
+**Power management note (updated 2026-08-12):** Battery restrictions
+(`Stop On Battery Mode`, `No Start On Batteries`) have been **removed** from
+both tasks — they will now run even if the laptop is unplugged. The laptop
+must still be **awake** (not in sleep/hibernate) at the scheduled time.
 
 **To manage cron jobs:**
 ```powershell
@@ -605,59 +707,182 @@ scanner-v3). The dashboard's Telegram notifications are separate.
 
 ---
 
-## Domain 2 — Job Hunter
+### `scanner-us/` — US Stock Swing Scanner (v2.0)
 
-Automated job application system for Kartik's DevOps/SRE profile. Scrapes LinkedIn, Naukri, Indeed, Instahyre, + 24 Finnish companies → scores → applies via Workday/LinkedIn Easy Apply/Oracle ORC → SQLite tracker → Telegram alerts.
+Adapted from scanner-v3 (India/NSE) for US markets (NYSE/NASDAQ). Same proven patterns (Cup & Handle, Double Bottom), same risk management (2.0x ATR, 8% cap), new market. **GitHub: https://github.com/karthik0419/scanner-us**. **Targeting YouTube Shorts monetization for US audience (10-20x higher CPM than India).**
 
-### ⚠️ Security notes
-- `.env` contains real credentials (Telegram bot token, LinkedIn/Naukri/Workday passwords). **Never commit, never share publicly.**
-- Phone `8149927963` is hardcoded in multiple files.
-- Two different emails appear in profile (`bandewarkarthik@gmail.com` vs `kartikbandewar1911@gmail.com`).
-- Chrome extension `content.js` reportedly has a password in default profile.
+**v2.0 improvements (2026-08-29):**
+1. **Multi-timeframe confirmation** — Daily pattern confirmed by weekly trend (50-week SMA). MTF-confirmed setups get +15 score bonus, non-MTF get -10 penalty. `--mtf-only` flag.
+2. **Risk from ENTRY (not CMP)** — v1 calculated risk from current price (wrong). v2 calculates from breakout level (where you actually enter).
+3. **Double Bottom spacing** — Min 15 bars between bottoms (was 7). Prevents detecting downtrends as double bottoms.
+4. **Momentum check for NEAR** — 5D close must be > 10D close (stock rising toward breakout). Prevents flagging crashing stocks as NEAR.
+5. **Handle validation** — Handle must be within 15% of right rim (not a crash).
+6. **Recovery check** — Current price must be above bottom 2 (stock recovering, not falling).
+7. **C&H Weekly/Monthly timeframe fix (CRITICAL, 2026-08-29)** — Was passing daily df to all timeframes. Now each timeframe uses its own resampled data (daily/weekly/monthly bars). This was hiding C&H Weekly as a profitable pattern (52.2% WR, +1.65% exp).
+8. **Auto-refresh S&P 500 list** — `refresh_sp500.py` fetches current constituents from Wikipedia. Scanner auto-refreshes before each scan (unless `--no-refresh`).
+9. **Incremental cache refresh** — `--refresh-cache` flag downloads only NEW stocks (after sp500.txt update), merges into existing cache. No full re-download.
+10. **Quality filters** — `--best-only` (1 setup per stock, no duplicates), `--db-only` (Double Bottom only, the 70.7% WR pattern).
+11. **Paper tracker** — `paper_tracker.py` tracks live picks. NEAR picks wait for breakout, auto-checks SL/T1/T2, 45-day time exit.
+12. **NaN bug fixes** — Drop NaN Close rows (incomplete trading day) in sector_rotation, scanner, chart_generator, paper_tracker.
 
-### ⚠️ Security notes
-- `.env` contains real credentials (Telegram bot token, LinkedIn/Naukri/Workday/Instahyre passwords). **Never commit, never share publicly.**
-- Phone `8149927963` is hardcoded in multiple files.
-- Two different emails appear in profile (`bandewarkarthik@gmail.com` vs `kartikbandewar1911@gmail.com`).
-- Chrome extension `content.js` reportedly has a password in default profile.
+**Stock universes:**
+- `sp500.txt` — 503 S&P 500 stocks (DEFAULT, auto-refreshable from Wikipedia)
+- `backbone_us.txt` — 50 curated momentum stocks (quick scan, ~2 min)
+- `sp500_sectors.json` — Symbol → GICS sector mapping (from Wikipedia)
 
-### Quick Start (EASIEST WAY)
+**Sector rotation:** 11 S&P sector ETFs (XLK, XLV, XLF, XLE, XLY, XLP, XLI, XLB, XLU, XLRE, XLC). Same BOOM/RISING/COOLING/WEAK signals as scanner-v3.
+
+**Backtest results (S&P 500, 5-year, 293 trades, post C&H Weekly fix):**
+
+| Pattern | Trades | Win Rate | Expectancy | PF | Verdict |
+|---|---|---|---|---|---|
+| **Double Bottom** | 259 | **71.0%** | **+1.73%** | **2.46** | ✅ Star pattern |
+| **C&H Weekly** | 23 | **52.2%** | **+1.65%** | **1.56** | ✅ Good (2nd best) |
+| C&H Daily | 11 | 36.4% | -0.37% | 0.84 | ❌ Loser |
+| C&H Monthly | 0 | — | — | — | Not detected (rare) |
+
+Overall: 69.0% WR, +1.62% expectancy, 2.20 PF, +442.1% return, +40.2% CAGR.
+
+**Files:**
+- `scanner_us.py` — main scanner (v2.0, MTF confirmation, correct timeframe data, auto-refresh)
+- `visual_backtest.py` — cached backtest engine (incremental refresh, monthly data)
+- `chart_generator_v3.py` — chart generator with pattern overlay
+- `verify_picks.py` — validate entry/SL/targets correctness
+- `refresh_sp500.py` — auto-refresh S&P 500 list from Wikipedia
+- `paper_tracker.py` — paper trade tracker (NEAR waits for breakout, auto SL/T1/T2)
+- `analyze_patterns.py` — pattern stats by timeframe
+- `upgrade_cache.py` — add monthly data to existing cache (in-place)
+- `utils/sector_rotation_us.py` — S&P sector rotation
+- `Scanner.bat` — main menu (18 options)
+- `Daily Scan.bat` — one-click daily scan (S&P 500, MTF, best-only)
+- `Weekly Scan.bat` — one-click weekly S&P 500 scan (best-only)
+- `Backtest.bat` — backtest menu (3yr/5yr/test)
+
 ```powershell
-# Option 1: Double-click desktop shortcut "Job Auto-Apply"
-# Option 2: Run the batch file
-.\apply.bat
+# Daily scan (S&P 500, best-only, ~10 min) — DEFAULT
+python scanner_us.py --mtf-only --best-only
 
-# Option 3: Command line
-python apply.py                  # 5 jobs on LinkedIn + 5 on Instahyre (10 total)
-python apply.py --limit 10       # 10 jobs on each platform (20 total)
-python apply.py --linkedin       # LinkedIn only
-python apply.py --instahyre      # Instahyre only
-python export_jobs.py            # Export applied jobs to Excel (tracker/applied_jobs.xlsx)
+# Quick scan (backbone 50, ~2 min)
+python scanner_us.py --stocks backbone_us.txt --mtf-only --best-only --no-refresh
+
+# Double Bottom only (70.7% WR pattern)
+python scanner_us.py --mtf-only --db-only
+
+# Test mode (10 stocks)
+python scanner_us.py --test --mtf-only --no-refresh
+
+# Refresh S&P 500 list from Wikipedia
+python refresh_sp500.py --check    # dry run
+python refresh_sp500.py            # apply
+
+# Backtest (cached, ~5 min)
+python visual_backtest.py --stocks sp500.txt --years 5 --visual
+
+# Incremental cache refresh (after sp500.txt update)
+python visual_backtest.py --stocks sp500.txt --years 5 --refresh-cache --visual
+
+# Paper tracker
+python paper_tracker.py init       # init from latest scan
+python paper_tracker.py update     # fetch prices, check breakouts/SL/T1/T2
+python paper_tracker.py status     # show all trades
+python paper_tracker.py summary    # one-line summary
+
+# Verify picks
+python verify_picks.py
+
+# Generate charts
+python chart_generator_v3.py MSFT
+python chart_generator_v3.py --batch results_us_2026-08-29.csv --top 5
+
+# Analyze backtest patterns by timeframe
+python analyze_patterns.py backtest_results/sp500_5yr_295trades.csv
 ```
 
-### Commands
-```powershell
-pip install -r requirements.txt
+---
 
-# ── Simple auto-apply (RECOMMENDED) ──
+## Domain 2 — Job Hunter
+
+**ZERO INTERVENTION JOB HUNTER** — Fully automated job application system targeting Australia + International + Visa Sponsorship opportunities. Scrapes Australia (Seek, LinkedIn AU, Indeed AU) + International (LinkedIn, WeWorkRemotely, RemoteOK) + India (LinkedIn, Naukri, Indeed, Instahyre, Jobringer) → auto-scores (0-100) → auto-approves (NO manual Telegram clicks!) → AI form filling (GPT-4) → AI cover letters → applies via Workday/LinkedIn Easy Apply/Oracle ORC → SQLite tracker → Telegram summary.
+
+**Latest improvements (2026-08-27):**
+- ✅ **Auto-approval system** — Score >= 80 = instant apply, >= 70 = 30s delay, >= 60 = 60s delay. NO manual Telegram approvals!
+- ✅ **AI form filling** — GPT-4 answers application questions ("Why do you want to work here?", salary expectations, behavioral questions)
+- ✅ **AI cover letters** — Personalized per job, emphasizes visa sponsorship for international roles
+- ✅ **Australia job scraper** — Seek.com.au, LinkedIn AU, Indeed AU with visa sponsor detection
+- ✅ **Jobringer scraper** — jobringer.com (India jobs, Selenium-based, 30 jobs per run)
+- ✅ **Location boosting** — Australia +20 points, International/Remote +10, Visa Sponsorship +15
+- ✅ **Smart pacing** — Respects daily limits (LinkedIn 15/day, Naukri 50/day), auto-queues excess for next day
+- ✅ **Error recovery** — Auto-retry with exponential backoff (3 attempts)
+- ✅ **Session management** — Auto-relogin when LinkedIn cookies expire, handles 2FA with Telegram alerts
+- ✅ **LinkedIn Easy Apply bug fix** — Fixed dialog disappearing issue (changed to `visibility_of_element_located`, added 3s stabilization delay)
+- ✅ **Windows encoding fix** — UTF-8 wrapper for emoji support
+
+**Cost:** $20/month (OpenAI GPT-4 for AI features). Expected results: 70-105 applications/week, 5-15 interview requests/week, 0 manual interventions (except 2FA).
+
+### ⚠️ Security notes
+- `.env` contains real credentials (Telegram bot token, LinkedIn/Naukri/Workday/Instahyre passwords, OpenAI API key). **Never commit, never share publicly.**
+- Phone `8149927963` is hardcoded in multiple files.
+- Two different emails appear in profile (`bandewarkarthik@gmail.com` vs `kartikbandewar1911@gmail.com`).
+- Chrome extension `content.js` reportedly has a password in default profile.
+
+### Quick Start (ZERO INTERVENTION)
+```powershell
+# ── ONE CLICK (EASIEST - RECOMMENDED) ──
+# Double-click desktop shortcut "JOB APPLY" (created by create_shortcut.bat)
+# OR run:
+.\ONE_CLICK_APPLY.bat              # Interactive menu: 5/10/20/30 jobs, dry run, export, stats
+
+# ── COMMAND LINE ──
+pip install openai  # Required for AI features
+
+# Test (dry run - no actual applications)
+python automate_zero_intervention.py --dry-run --limit 5
+
+# Live run (apply to 10 jobs automatically)
+python automate_zero_intervention.py --limit 10
+
+# Schedule daily (run as Administrator) - SET & FORGET!
+python scheduler_setup_zero.py  # Runs daily at 9 AM, applies to 15 jobs
+
+# ── Legacy commands (manual approval required) ──
 python apply.py                  # LinkedIn + Instahyre, 5 jobs each
 python apply.py --limit 10       # 10 jobs each platform
-python apply.py --linkedin       # LinkedIn Easy Apply only
-python apply.py --instahyre      # Instahyre only
-python export_jobs.py            # Export to Excel + auto-open
-.\apply.bat                      # Interactive menu (double-click or run)
-
-# ── Legacy commands ──
 python main.py                   # Manual run with Telegram approval workflow
-python automate.py --limit 15    # Fully automated (auto-apply at score >=70)
-python apply_now.py <url>        # Apply to a specific job URL
-
-# Install Windows Task Scheduler job (daily 9 AM)
-python scheduler_setup.py
-# Manual trigger:  schtasks /Run /TN "JobHunterAutoApply"
-# Remove:          schtasks /Delete /TN "JobHunterAutoApply" /F
+python automate.py --limit 15    # Old auto-apply (no AI features)
+python export_jobs.py            # Export to Excel + auto-open
+.\apply.bat                      # Interactive menu
 
 .\run_daily.bat                  # runs automate.py
+```
+
+### Key Files (Zero Intervention)
+- `automate_zero_intervention.py` — Main automation pipeline (scrape → score → auto-approve → AI apply)
+- `automation/auto_approve.py` — Auto-approval logic (score thresholds, location boosting)
+- `automation/ai_form_filler.py` — GPT-4 form filling (questions, dropdowns, salary)
+- `automation/cover_letter_generator.py` — AI cover letter generation
+- `scrapers/australia_jobs.py` — Australia-specific scraper (Seek, LinkedIn AU, Indeed AU)
+- `scrapers/jobringer.py` — Jobringer.com scraper (Selenium-based, India jobs)
+- `applicator/linkedin_apply.py` — LinkedIn Easy Apply automation (FIXED: dialog detection bug)
+- `README.md` — Quick start guide
+- `ZERO_INTERVENTION_PLAN.md` — Full 10-phase implementation plan
+- `SETUP_ZERO_INTERVENTION.md` — Detailed setup guide
+- `IMPLEMENTATION_COMPLETE.md` — Implementation summary + bug fixes
+
+### Auto-Approval Logic
+| Score | Action | Delay | Example |
+|---|---|---|---|
+| 80-100 | INSTANT APPLY | 0 sec | Atlassian DevOps Sydney (base 75 + Australia +20 + visa +15 = 110) |
+| 70-79 | APPLY | 30 sec | Google SRE Remote (base 70 + international +10 = 80) |
+| 60-69 | APPLY | 60 sec | Startup DevOps Pune (base 60) |
+| < 60 | SKIP | - | Poor match |
+
+### Known Issues (FIXED)
+1. ✅ **LinkedIn Easy Apply dialog disappearing** — Fixed with `visibility_of_element_located` + 3s stabilization delay
+2. ✅ **Windows encoding errors** — Fixed with UTF-8 wrapper at top of script
+3. ⚠️ **OpenAI API required** — Falls back to template answers if key not provided (less personalized)
+
+### Documentation
+See `job-hunter/README.md` for quick start, `ZERO_INTERVENTION_PLAN.md` for full implementation details, `SETUP_ZERO_INTERVENTION.md` for setup guide.
 ```
 
 ### How it works (apply.py)
@@ -835,3 +1060,527 @@ npm run export       # static export to out/
 5. Scrub secrets from `job-hunter/` and scanner `.env` files.
 6. Convert delivery-service MySQL `?` placeholders to PostgreSQL `$1` syntax (models use `pool.getConnection()` + `connection.execute()` which is mysql2 API, not pg).
 6. Add `requirements.txt` to all Python projects.
+
+---
+
+## Domain 4 — E-commerce Automation
+
+### `amazon-image-agent/` — Autonomous Amazon product image generator
+
+**Purpose**: Automated AI agent that monitors Amazon listings and generates high-quality product images using Krea AI's MCP server. Runs on a daily schedule (Windows Task Scheduler) to continuously improve product listings and track revenue performance.
+
+**Stack**: Python 3.8+, Krea AI MCP server, Windows Task Scheduler
+
+**Status**: Active (2026-08-23) — autonomous loop for revenue generation testing
+
+**Key features**:
+- 🤖 Autonomous daily loop via Windows Task Scheduler
+- 🎨 AI image generation using Krea AI MCP (5 images per listing: front view, lifestyle, close-up, side angle, packaging)
+- 📊 Revenue tracking: conversion rates, orders, ROI, performance vs targets
+- 🔄 State management: tracks processed ASINs, avoids duplicates
+- 📈 Analytics: top performers, 7/30/90-day reports
+- 🎯 Multi-style images: realistic, lifestyle, minimal, artistic variants
+
+**Project structure**:
+```
+amazon-image-agent/
+├── agent.py                    # Main agent loop
+├── scheduler.py                # Windows Task Scheduler setup
+├── requirements.txt            # Python dependencies (requests, python-dotenv)
+├── .env.example               # Environment variables template
+├── README.md                  # Full documentation
+├── QUICKSTART.md              # 5-minute setup guide
+├── config/
+│   └── settings.py            # Configuration (images per listing, targets, loop interval)
+├── modules/
+│   ├── krea_client.py         # Krea AI image generation client
+│   ├── amazon_monitor.py      # Amazon listing monitor (mock data, needs SP-API/scraping)
+│   └── revenue_tracker.py     # Revenue & analytics tracker
+├── logs/
+│   └── agent.log              # Agent execution logs
+├── state/
+│   ├── agent_state.json       # Processed ASINs
+│   └── revenue_log.json       # Revenue data (orders, views, conversion rates)
+└── results/                   # Generated images & metadata (JSON)
+```
+
+**Setup (5 minutes)**:
+```powershell
+cd F:\projects\claude\amazon-image-agent
+
+# 1. Install dependencies
+pip install -r requirements.txt
+
+# 2. Get Krea API key from https://krea.ai/app/api/tokens
+
+# 3. Configure
+cp .env.example .env
+notepad .env  # Add KREA_API_KEY
+
+# 4. Test run
+python agent.py
+
+# 5. Schedule daily runs (9 AM default)
+python scheduler.py create
+```
+
+**Usage**:
+```powershell
+# Manual run (one cycle)
+python agent.py
+
+# Schedule daily runs
+python scheduler.py create              # 9 AM default
+python scheduler.py create --time 18:00 # Custom time (6 PM)
+python scheduler.py status              # Check task status
+python scheduler.py run                 # Run immediately (testing)
+python scheduler.py delete              # Remove scheduled task
+
+# Revenue tracking (manual)
+python -c "from modules.revenue_tracker import RevenueTracker; t = RevenueTracker(); t.update_views('B08TEST001', 1500)"
+python -c "from modules.revenue_tracker import RevenueTracker; t = RevenueTracker(); t.record_order('B08TEST001', 2999)"
+python -c "from modules.revenue_tracker import RevenueTracker; t = RevenueTracker(); t.print_report(30)"
+
+# Check logs
+cat logs\agent.log
+Get-Content logs\agent.log -Tail 50 -Wait  # Real-time
+
+# Check state
+cat state\agent_state.json      # Processed ASINs
+cat state\revenue_log.json      # Revenue data
+
+# View results
+ls results\
+cat results\B08TEST001_metadata.json
+```
+
+**Configuration** (`config/settings.py`):
+- `IMAGE_WIDTH`, `IMAGE_HEIGHT`: Image dimensions (default 1024x1024)
+- `IMAGES_PER_LISTING`: Number of images per product (default 5)
+- `LOOP_INTERVAL_HOURS`: Loop frequency (default 24 = daily)
+- `MAX_LISTINGS_PER_RUN`: Max listings per cycle (default 10)
+- `CONVERSION_RATE_TARGET`: Target conversion rate (default 3%)
+- `AVG_ORDER_VALUE_TARGET`: Target avg order value (default Rs 500)
+
+**Krea AI MCP integration**:
+- MCP server configured in `C:\Users\91814\.config\devin\config.json`
+- URL: `https://api.krea.ai/mcp`
+- Transport: Streamable HTTP
+- Authentication: Bearer token (API key from https://krea.ai/app/api/tokens)
+- `krea_client.py` handles API calls with custom prompts and styles
+
+**Amazon integration (TODO)**:
+Currently uses **mock data** (2 test listings). To connect real Amazon:
+- **Option A (sellers)**: Amazon Selling Partner API (SP-API) — register at https://developer.amazonservices.com, add credentials to `.env`, update `amazon_monitor.py`
+- **Option B (research)**: Web scraping with `beautifulsoup4` or `playwright` — respect robots.txt and rate limits
+
+**Agent loop workflow**:
+1. **Monitor**: Fetch new Amazon listings that need images (`amazon_monitor.get_new_listings()`)
+2. **Generate prompts**: Create 5 diverse prompts per listing (front, lifestyle, close-up, side, packaging)
+3. **Generate images**: Call Krea AI MCP to generate images with different styles
+4. **Save results**: Store images and metadata in `results/`
+5. **Track**: Add listing to revenue tracker (`revenue_tracker.track_listing()`)
+6. **State**: Mark ASIN as processed to avoid duplicates
+
+**Revenue tracking**:
+- **Per-listing metrics**: Total revenue, orders, views, conversion rate, avg order value, days active
+- **Summary metrics**: Total revenue, total orders, avg conversion rate, avg order value
+- **Performance vs targets**: Conversion rate target (3%), avg order value target (Rs 500)
+- **Top performers**: Best listings by revenue (`get_top_performers()`)
+
+**Files**:
+- `agent.py` — Main loop orchestrator (run this)
+- `scheduler.py` — Windows Task Scheduler setup
+- `modules/krea_client.py` — Krea AI image generation (5 styles: realistic, lifestyle, minimal, artistic, packaging)
+- `modules/amazon_monitor.py` — Amazon listing monitor (mock data, **edit this** to connect real data)
+- `modules/revenue_tracker.py` — Revenue & analytics tracker
+- `config/settings.py` — Configuration constants
+- `README.md` — Full documentation
+- `QUICKSTART.md` — 5-minute setup guide
+- `.env.example` — Environment variables template
+
+**Logs & monitoring**:
+- `logs/agent.log` — Detailed execution logs (check for errors)
+- `state/agent_state.json` — Processed ASINs (prevents duplicates)
+- `state/revenue_log.json` — Revenue data (orders, views, conversion rates)
+- `results/` — Generated images and metadata (JSON per ASIN)
+
+**Next steps**:
+1. Get Krea API key and test image generation
+2. Connect real Amazon data (SP-API or scraping)
+3. Run first cycle and verify images are generated
+4. Schedule daily runs and monitor logs
+5. Track revenue (update views/orders as they come in)
+6. Optimize: A/B test image styles, adjust targets, scale gradually
+
+**Roadmap**:
+- [ ] Integrate Amazon SP-API for real listing data
+- [ ] Add image upload to Amazon Seller Central
+- [ ] Multi-marketplace support (US, UK, DE, etc.)
+- [ ] A/B testing framework (compare image variants)
+- [ ] Slack/Telegram notifications for daily reports
+- [ ] Dashboard UI for revenue analytics
+- [ ] Auto-optimize prompts based on conversion data
+
+**Notes**:
+- Project created 2026-08-23 for revenue generation testing
+- Krea AI MCP server is hosted (no local setup needed)
+- Windows Task Scheduler used for loop (not cron, since Windows)
+- Mock data returns 2 test listings; connect real Amazon for production
+- Revenue tracking is manual (update views/orders via Python CLI)
+- Has `requirements.txt` (requests, python-dotenv)
+
+---
+
+## Domain 5 — KDP Publishing
+
+### `kdp-coloring-pipeline/` — AI-powered kids coloring book generator
+
+**Purpose**: Create and publish kids coloring books on Amazon KDP. Manual validation first (Book #1), then automate proven workflows. Target: $6.99 books, 100 pages, kids ages 3-8.
+
+**Stack**: Python 3.12+, Pillow, ReportLab, AI image APIs (Hugging Face free tier / Replicate / Stability AI)
+
+**Status**: Active (2026-08-23) — Book #1 plan ready, tested with placeholders
+
+**Workflow**:
+```
+1. PLAN → book_planner.py → 100-page content plan (JSON)
+2. GENERATE → image_generator.py → 100 simple line drawings
+3. REVIEW → Manual QC, copy to approved_images/
+4. BUILD PDF → pdf_builder.py → KDP-ready interior.pdf
+5. DESIGN COVER → Canva (dimensions from pdf_builder)
+6. PUBLISH → kdp.amazon.com → Upload & set price $6.99
+7. TRACK → 30 days → If 5+ sales/day, make Book #2
+```
+
+**Book #1 spec**:
+- Title: "My First Big Coloring Book"
+- Pages: 100 (20 animals, 15 vehicles, 15 fruits/veg, 15 shapes, 10 birds, 10 sea creatures, 10 insects, 5 flowers)
+- Target: Kids 3-8 years
+- Style: Simple black line drawings, no shading, white background
+- Trim: 8.5" x 11"
+- Price: $6.99 USD (printing $2.50, royalty $4.49/book)
+- Cost to create: $0-2 (free Hugging Face tier or $1 Replicate)
+
+**Project structure**:
+```
+kdp-coloring-pipeline/
+├── book_planner.py          # Generate 100-page content plan
+├── image_generator.py       # Generate line drawings (AI)
+├── pdf_builder.py           # Assemble KDP-ready PDF
+├── config.py                # Book settings, KDP specs, pricing
+├── requirements.txt         # Pillow, ReportLab, requests
+├── README.md                # Full docs
+├── QUICKSTART.md            # 30-min guide
+├── book_plans/              # JSON plans
+│   └── book_001_plan.json   # 100-page plan (generated)
+├── generated_images/        # Raw AI images (100 PNGs)
+├── approved_images/         # QC-passed images
+└── output/                  # Final PDFs
+```
+
+**Usage**:
+```powershell
+cd F:\projects\claude\kdp-coloring-pipeline
+
+# 1. Generate book plan (already done)
+python book_planner.py
+
+# 2. Generate images
+python image_generator.py --provider local --test       # Placeholders (5 pages, testing)
+python image_generator.py --provider local              # Placeholders (all 100)
+python image_generator.py --provider huggingface        # Real AI (free tier, requires API key)
+python image_generator.py --provider replicate          # Real AI (paid, $0.01/image)
+
+# 3. Review & approve
+cp generated_images\*.png approved_images\
+
+# 4. Build PDF
+python pdf_builder.py
+python pdf_builder.py --use-generated  # Use generated_images/ instead of approved_images/
+
+# 5. Check output
+start output\My_First_Big_Coloring_Book_Interior.pdf
+```
+
+**Configuration** (`config.py`):
+```python
+BOOK_CONFIG = {
+    "title": "My First Big Coloring Book",
+    "author": "Creative Kids Publishing",  # Change to your pen name
+    "total_pages": 100,
+    "categories": {
+        "Animals": 20, "Vehicles": 15, "Fruits & Vegetables": 15,
+        "Shapes & Objects": 15, "Birds": 10, "Sea Creatures": 10,
+        "Insects": 10, "Flowers": 5
+    }
+}
+
+KDP_SPECS = {
+    "trim_width_inches": 8.5,
+    "trim_height_inches": 11.0,
+    "dpi": 300,
+    "interior_color": "black_and_white"
+}
+
+PRICING = {
+    "target_price_usd": 6.99,
+    "printing_cost_estimate_usd": 2.50,
+    "target_royalty_usd": 4.49
+}
+```
+
+**Image generation options**:
+1. **Local placeholders** (free, testing only) — Simple text placeholders, not suitable for publishing
+2. **Hugging Face** (free tier) — Real AI images, good quality, rate-limited (sign up at huggingface.co, get API token)
+3. **Replicate** (~$0.01/image = $1 for 100) — High quality, fast (requires credit card)
+4. **Stability AI** (~$0.02/image = $2 for 100) — Highest quality (requires credit card)
+
+**Phase 1: Manual validation** (current):
+- ✅ Book plan generated (100 pages)
+- ✅ Test images created (5 placeholders)
+- ⏳ Generate all 100 images (need to set up Hugging Face API or use Replicate)
+- ⏳ Build PDF
+- ⏳ Design cover (Canva)
+- ⏳ Publish on KDP
+- ⏳ Track sales for 30 days
+- **Decision**: If 5+ sales/day → automate and scale. If not → pivot niche.
+
+**Phase 2: Automation** (after Book #1 success):
+- Batch image generation (overnight)
+- Auto QC (filter bad images)
+- One-click PDF assembly
+- Cover templates (reusable)
+- Series generator (Book #2, #3 in same niche)
+
+**Economics**:
+- **Cost**: $0-2 per book (image generation)
+- **Revenue**: $4.49/book sold (after KDP printing)
+- **Break-even**: 1 sale
+- **Target**: 5 sales/day = $22/day = $674/month per book
+- **Scale**: 10 books × $674/month = $6,740/month
+
+**Next steps**:
+1. Get Hugging Face API token (free): https://huggingface.co/settings/tokens
+2. Add to `config.py`: `IMAGE_API_CONFIG = {"api_key": "hf_..."}`
+3. Generate 100 images: `python image_generator.py --provider huggingface`
+4. Build PDF: `python pdf_builder.py`
+5. Design cover in Canva (use dimensions from pdf_builder output)
+6. Publish on KDP: https://kdp.amazon.com/en_US/create
+7. Track sales, decide next move
+
+**Files**:
+- `book_planner.py` — Generate 100-page content plan with prompts
+- `image_generator.py` — Generate line drawings via AI (supports local/HF/Replicate/Stability)
+- `pdf_builder.py` — Assemble KDP-ready interior PDF (B&W, 8.5x11, 300 DPI)
+- `config.py` — Book settings, KDP specs, pricing, API keys
+- `book_plans/book_001_plan.json` — 100-page plan (Dog, Cat, Elephant, Car, Bus, Apple, etc.)
+- `README.md` — Full documentation
+- `QUICKSTART.md` — 30-minute setup guide
+
+**Notes**:
+- Project created 2026-08-23 for KDP revenue testing
+- Book #1 plan ready (100 pages, variety theme for kids 3-8)
+- Tested with placeholder images (5 pages generated successfully)
+- Need to set up Hugging Face API (free) or Replicate (paid) for real images
+- Manual validation first — only automate after Book #1 proves profitable
+- Has `requirements.txt` (Pillow, ReportLab, requests, python-dotenv)
+
+---
+
+## MCP Servers Configuration
+
+MCP (Model Context Protocol) servers extend Devin's capabilities with third-party integrations. Configuration file: `C:\Users\91814\.config\devin\config.json`
+
+### Active MCP Servers
+
+#### 1. **Krea AI** (Image Generation)
+- **Purpose**: Generate product images for Amazon listings
+- **Transport**: Streamable HTTP
+- **Endpoint**: `https://api.krea.ai/mcp`
+- **Used by**: `amazon-image-agent/`
+- **Status**: ✅ Active
+
+#### 2. **GLM Vision** (Image Analysis - TradingView Charts)
+- **Purpose**: Analyze TradingView chart screenshots for pattern recognition, OCR, and technical analysis
+- **Model**: GLM-4.5V (Zhipu AI via OpenRouter)
+- **Provider**: OpenRouter (English interface, multi-model aggregator)
+- **API Key**: Configured (free tier + pay-as-you-go)
+- **Cost**: ~$0.0001 per image analysis (very cheap)
+- **Status**: ✅ Active (2026-08-23)
+
+**Capabilities**:
+- **Pattern recognition**: Identify Cup & Handle, Double Bottom, Darvas Box, etc.
+- **OCR**: Extract text from charts (prices, indicators, RSI values, volume)
+- **Technical analysis**: Analyze trend strength, support/resistance levels, breakout confirmation
+- **Multi-image comparison**: Compare multiple chart timeframes or stocks side-by-side
+
+**Tools available**:
+- `analyze_image(file_path, prompt?)` — Analyze a local TradingView chart screenshot
+- `analyze_image_url(url, prompt?)` — Analyze a chart from a URL
+- `extract_text(file_path)` — OCR to extract all text/numbers from chart
+- `describe_image(file_path)` — Get detailed description of chart setup
+- `analyze_multiple_images(file_paths, prompt?)` — Compare up to 10 charts
+
+**Model details**:
+- **GLM-4.5V**: 106B params, 12B activated (MoE architecture)
+- **Context**: 128K tokens
+- **Strengths**: State-of-the-art OCR, document parsing, spatial reasoning, video understanding
+- **Thinking mode**: Deep reasoning for complex pattern analysis
+- **Languages**: English + Chinese (perfect for NSE stock tickers)
+
+**Configuration** (`C:\Users\91814\.config\devin\config.json`):
+```json
+{
+  "mcpServers": {
+    "glm-vision": {
+      "command": "python",
+      "args": ["-m", "glm_vision_mcp_server"],
+      "env": {
+        "GLM_API_KEY": "sk-or-v1-***",
+        "GLM_API_BASE": "https://openrouter.ai/api/v1",
+        "GLM_MODEL": "z-ai/glm-4.5v"
+      },
+      "startup_timeout_sec": 120
+    }
+  }
+}
+```
+
+**Installation**:
+```powershell
+# Install MCP server (already done)
+pip install glm-vision-mcp-server
+
+# Test API key
+python -c "import requests; r = requests.post('https://openrouter.ai/api/v1/chat/completions', headers={'Authorization': 'Bearer YOUR_KEY', 'Content-Type': 'application/json'}, json={'model': 'z-ai/glm-4.5v', 'messages': [{'role': 'user', 'content': 'OK'}], 'max_tokens': 100}); print(r.status_code, r.json())"
+```
+
+**Usage examples**:
+```
+# In Devin chat after restart:
+"Analyze this TradingView chart: F:\projects\claude\scanner-v3\charts\RELIANCE.NS.png"
+
+"Extract all indicator values from this chart: F:\path\to\chart.png"
+
+"Is this a valid Cup & Handle pattern? F:\path\to\chart.png"
+
+"Compare these two timeframes and tell me which is stronger: 
+ F:\daily_chart.png and F:\weekly_chart.png"
+```
+
+**OpenRouter account**:
+- **Dashboard**: https://openrouter.ai/settings/credits
+- **API Keys**: https://openrouter.ai/settings/keys
+- **Free tier**: ~$1-5 credits (hundreds of analyses)
+- **Pricing**: https://openrouter.ai/z-ai/glm-4.5v (very cheap)
+- **Add credits**: $5-10 recommended for heavy use
+
+**Alternative models on OpenRouter** (if you want to switch):
+- `z-ai/glm-5v-turbo` — Latest, native multimodal agent model (more expensive, requires credits)
+- `z-ai/glm-4.6v` — High-fidelity visual understanding, 128K context
+- `openai/gpt-4o` — OpenAI's vision model (more expensive)
+- `anthropic/claude-3.5-sonnet` — Claude's vision model (most expensive)
+
+**Use cases for scanner projects**:
+1. **Verify scanner picks**: Upload TradingView chart, ask "Is this a valid Cup & Handle?"
+2. **Extract chart data**: OCR to read exact RSI, MACD, volume values from screenshots
+3. **Pattern confirmation**: Get AI second opinion on pattern quality before entering trade
+4. **Multi-timeframe analysis**: Compare daily/weekly/monthly charts side-by-side
+5. **Backtest validation**: Analyze historical chart screenshots to verify pattern definitions
+6. **Training data**: Generate labeled dataset for pattern recognition ML models
+
+**Notes**:
+- Restart Devin after config changes to load MCP servers
+- Images must be local files or public URLs (no clipboard support yet)
+- Max file size: 5MB per image (TradingView screenshots are typically <500KB)
+- Supported formats: PNG, JPG, JPEG, WebP, GIF
+- Cost tracking: Check OpenRouter dashboard for usage stats
+- Free tier should be enough for 100-500 chart analyses
+
+**Bug Bounty Research** (2026-08-23):
+- OpenRouter has an active bug bounty program (`safety@openrouter.ai`)
+- Research document: `.devin/openrouter_bug_bounty_research.md`
+- Focus areas: TOCTOU race conditions, credit bypass, rate limit manipulation
+- Testing tools: Race condition tester, credit monitor, endpoint scanner
+- **Always get approval before testing** (red-teaming policy requires it)
+- Potential vulnerabilities: Credit system race conditions (most common in API credit systems)
+- Responsible disclosure: Report to `safety@openrouter.ai`, wait 5 business days
+- See research doc for full testing methodology and report template
+
+---
+
+## 🚀 Quick Start: Using GLM Vision (After Restart)
+
+### **Method 1: Direct in Devin Chat (EASIEST)**
+After restarting Devin, just paste the image path:
+```
+Analyze this chart: F:\projects\claude\scanner-v3\charts\PIRAMALFIN_analysis_2026-07-18.png
+```
+
+Or ask specific questions:
+```
+Is this a Cup & Handle? F:\projects\claude\scanner-v3\charts\STOCK_NAME.png
+Extract all indicator values from: F:\path\to\chart.png
+```
+
+### **Method 2: Python Script (Multi-Provider Router)**
+Uses FREE providers first (Gemini → OpenRouter → GPT4Free):
+```powershell
+cd F:\projects\claude\.devin
+python multi_provider_vision.py "F:\path\to\chart.png"
+python multi_provider_vision.py "F:\path\to\chart.png" "Is this a valid Cup & Handle?"
+```
+
+### **Method 3: Import in Scanner Code**
+```python
+import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).parent.parent / ".devin"))
+from multi_provider_vision import analyze_chart, extract_chart_text
+
+# Analyze pattern
+analysis = analyze_chart("charts/RELIANCE.png", "Is this a valid Cup & Handle?")
+print(f"AI Analysis: {analysis}")
+
+# Extract OCR text
+ocr_text = extract_chart_text("charts/RELIANCE.png")
+print(f"Chart Data: {ocr_text}")
+```
+
+### **Where to Find Chart Images:**
+- Scanner-v3: `F:\projects\claude\scanner-v3\charts\*.png`
+- Scanner-v2: `F:\projects\claude\scanner-v2\charts\*.png`
+- Chart Visualizer: `F:\projects\claude\chart-visualizer\output\*.png`
+- Any TradingView screenshot you save
+
+### **Speed Optimization:**
+Current setup takes 5-10 seconds per analysis (OpenRouter API call).
+
+**To make it 2x faster + FREE forever:**
+1. Get Gemini API key: https://aistudio.google.com/apikey (30 seconds)
+2. Edit `F:\projects\claude\.devin\multi_provider_vision.py` line 23:
+   ```python
+   "gemini": {
+       "api_key": "YOUR_GEMINI_KEY_HERE",  # Paste your key
+       "enabled": True  # Change to True
+   }
+   ```
+3. **Result**: 1500 free analyses/day, PERMANENT, 2x faster
+
+### **Cost Summary:**
+- **Gemini (recommended)**: $0 forever, 1500/day
+- **OpenRouter (current)**: $0.0001/image (~$0.01 per 100 charts)
+- **GPT4Free (backup)**: $0 but unstable
+
+### **Full Documentation:**
+- Usage guide: `.devin/VISION_USAGE_GUIDE.md`
+- Multi-provider script: `.devin/multi_provider_vision.py`
+- Bug bounty research: `.devin/openrouter_bug_bounty_research.md`
+- Provider comparison: `.devin/vision_providers.json`
+
+### **Tested & Working:**
+✅ Analyzed PIRAMALFIN chart successfully (2026-08-23)
+✅ Pattern recognition: Cup & Handle detected with 73.6/100 score
+✅ OCR: Extracted price levels, indicators, support/resistance
+✅ Cost: $0.004 per analysis with OpenRouter
