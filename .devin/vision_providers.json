@@ -1,0 +1,60 @@
+{
+  "providers": [
+    {
+      "name": "Google Gemini (Free Forever)",
+      "model": "gemini-2.0-flash-exp",
+      "api_base": "https://generativelanguage.googleapis.com/v1beta",
+      "free_tier": "15 RPM, 1500 RPD, PERMANENT",
+      "quality": "Excellent for charts/OCR",
+      "cost": "$0 forever",
+      "get_key": "https://aistudio.google.com/apikey",
+      "notes": "Best free option - no expiry, no credit card needed"
+    },
+    {
+      "name": "OpenRouter GLM-4.5V (Current)",
+      "model": "z-ai/glm-4.5v",
+      "api_base": "https://openrouter.ai/api/v1",
+      "free_tier": "$1-5 free credits",
+      "quality": "Excellent OCR, thinking mode",
+      "cost": "$0.0001 per image",
+      "get_key": "https://openrouter.ai/settings/keys",
+      "notes": "Currently configured"
+    },
+    {
+      "name": "GPT4Free (Reverse Engineered)",
+      "model": "gpt-4o",
+      "api_base": "https://g4f.dev/v1",
+      "free_tier": "Unlimited (community-maintained)",
+      "quality": "Best quality (GPT-4o)",
+      "cost": "$0 (uses web scraping)",
+      "get_key": "No key needed",
+      "notes": "May be unstable, against OpenAI ToS"
+    },
+    {
+      "name": "Cerebras (Free 1M tokens/day)",
+      "model": "llama-3.3-70b",
+      "api_base": "https://api.cerebras.ai/v1",
+      "free_tier": "1M tokens/day",
+      "quality": "Good (text-only, no vision yet)",
+      "cost": "$0",
+      "get_key": "https://cloud.cerebras.ai",
+      "notes": "Fast but no vision support"
+    },
+    {
+      "name": "Groq (Free tier)",
+      "model": "llama-3.2-90b-vision",
+      "api_base": "https://api.groq.com/openai/v1",
+      "free_tier": "Limited requests/day",
+      "quality": "Good vision support",
+      "cost": "$0 with limits",
+      "get_key": "https://console.groq.com",
+      "notes": "Fast inference, vision support"
+    }
+  ],
+  "recommended_strategy": {
+    "primary": "Google Gemini (permanent free, best value)",
+    "fallback_1": "OpenRouter GLM-4.5V (when Gemini rate limited)",
+    "fallback_2": "GPT4Free (when both exhausted)",
+    "notes": "Rotate providers to maximize free usage"
+  }
+}

@@ -1,0 +1,1059 @@
+﻿
+≡ƒÜÇ EXPLORING GITHUB FOR ALGO TRADING REPOSITORIES
+====================================================================================================
+
+≡ƒöì Searching: algo trading python options...
+   Γ£à Found 46 repositories
+
+≡ƒöì Searching: algorithmic trading python india...
+   Γ£à Found 14 repositories
+
+≡ƒöì Searching: options trading strategy python...
+   Γ£à Found 158 repositories
+
+≡ƒöì Searching: zerodha kite api python...
+   Γ£à Found 34 repositories
+
+≡ƒöì Searching: nse options trading python...
+   Γ£à Found 32 repositories
+
+≡ƒöì Searching: momentum trading python...
+   Γ£à Found 361 repositories
+
+≡ƒöì Searching: backtesting python options...
+   Γ£à Found 220 repositories
+
+≡ƒöì Searching: quantitative trading python...
+   Γ£à Found 1,242 repositories
+
+====================================================================================================
+≡ƒöì General Algo Trading (Options)
+====================================================================================================
+
+1. Γ¡É 1,101 | ≡ƒì┤ 201 | Jupyter Notebook
+   ≡ƒôª AlgorithmicTrading
+   ≡ƒô¥ This repository contains three ways to obtain arbitrage which are Dual Listing, 
+   ≡ƒöù https://github.com/JerBouma/AlgorithmicTrading
+   ≡ƒôà Updated: 2026-08-27
+
+2. Γ¡É 128 | ≡ƒì┤ 23 | Python
+   ≡ƒôª LoopTrader
+   ≡ƒô¥ An extensible options trading bot built on top of Python.
+   ≡ƒöù https://github.com/pattertj/LoopTrader
+   ≡ƒôà Updated: 2026-08-23
+
+3. Γ¡É 63 | ≡ƒì┤ 35 | Python
+   ≡ƒôª algo_trading_strategies_india
+   ≡ƒô¥ Open-source Python repository for algorithmic trading on NSE and BSE, focusing o
+   ≡ƒöù https://github.com/buzzsubash/algo_trading_strategies_india
+   ≡ƒôà Updated: 2026-08-26
+
+4. Γ¡É 57 | ≡ƒì┤ 21 | Python
+   ≡ƒôª crypto_algo_trading
+   ≡ƒô¥ This quant framework applies algorithm trading in Crypto market. The trading pai
+   ≡ƒöù https://github.com/Hudie/crypto_algo_trading
+   ≡ƒôà Updated: 2026-08-02
+
+5. Γ¡É 23 | ≡ƒì┤ 16 | Jupyter Notebook
+   ≡ƒôª Algorithmic-Trading---Backtesting---Banknifty-Straddle-using-Python
+   ≡ƒô¥ Python code of complete backtest of Banknifty Option Straddle
+   ≡ƒöù https://github.com/umeshpalai/Algorithmic-Trading---Backtesting---Banknifty-Straddle-using-Python
+   ≡ƒôà Updated: 2026-06-30
+
+6. Γ¡É 22 | ≡ƒì┤ 14 | Python
+   ≡ƒôª TDAmeritrade_AlgoTradingApplication
+   ≡ƒô¥ algorithmic trading agent built in python - leverages TD Ameritrade's public API
+   ≡ƒöù https://github.com/mtrinquero/TDAmeritrade_AlgoTradingApplication
+   ≡ƒôà Updated: 2026-06-11
+
+7. Γ¡É 20 | ≡ƒì┤ 12 | Python
+   ≡ƒôª BANKNIFTY-OPTION-ALGO-TRADING-USING-PYTHON-ZERODHA-API-with-LIVE-execution
+   ≡ƒô¥ Source code: BANKNIFTY OPTION ALGO TRADING USING PYTHON ZERODHA API with LIVE ex
+   ≡ƒöù https://github.com/TradeEasyWithMe/BANKNIFTY-OPTION-ALGO-TRADING-USING-PYTHON-ZERODHA-API-with-LIVE-execution
+   ≡ƒôà Updated: 2026-06-11
+
+8. Γ¡É 14 | ≡ƒì┤ 7 | Python
+   ≡ƒôª robotRay
+   ≡ƒô¥ robotRay is a python robo trader bot for several strategies including: 1) naked 
+   ≡ƒöù https://github.com/camilo-rojas/robotRay
+   ≡ƒôà Updated: 2026-04-08
+
+9. Γ¡É 7 | ≡ƒì┤ 2 | Python
+   ≡ƒôª market-making-algorithm-optiver
+   ≡ƒô¥ Python algorithm developed for the Optiver Algorithmic Trading Competition, feat
+   ≡ƒöù https://github.com/AchilleasDim/market-making-algorithm-optiver
+   ≡ƒôà Updated: 2026-07-10
+
+10. Γ¡É 3 | ≡ƒì┤ 2 | Python
+   ≡ƒôª TradingAlgorithmForDeribit
+   ≡ƒô¥ A comprehensive Python package for implementing trading algorithms on Deribit ex
+   ≡ƒöù https://github.com/chanhyeong28/TradingAlgorithmForDeribit
+   ≡ƒôà Updated: 2025-12-07
+
+11. Γ¡É 3 | ≡ƒì┤ 1 | Jupyter Notebook
+   ≡ƒôª AlgoTrading
+   ≡ƒô¥ Python codes used for accessing the Interactive Brokers on-line trading system. 
+   ≡ƒöù https://github.com/rezar362/AlgoTrading
+   ≡ƒôà Updated: 2026-04-24
+
+12. Γ¡É 3 | ≡ƒì┤ 2 | N/A
+   ≡ƒôª upx-momentum-nse
+   ≡ƒô¥ Upstox Intraday Momentum Algo (NSE EQ, F&O, Nifty/BankNifty options) Python fram
+   ≡ƒöù https://github.com/3vikramrao/upx-momentum-nse
+   ≡ƒôà Updated: 2026-06-20
+
+13. Γ¡É 2 | ≡ƒì┤ 1 | Python
+   ≡ƒôª nifty_scalper
+   ≡ƒô¥ python code for algo nifty option trading
+   ≡ƒöù https://github.com/rajsharma0407-boop/nifty_scalper
+   ≡ƒôà Updated: 2026-03-25
+
+14. Γ¡É 2 | ≡ƒì┤ 0 | Python
+   ≡ƒôª TradingAlgorithms
+   ≡ƒô¥ Compilation of Python stock and options trading algorithms with custom interface
+   ≡ƒöù https://github.com/AdamMawani/TradingAlgorithms
+   ≡ƒôà Updated: 2026-08-26
+
+15. Γ¡É 2 | ≡ƒì┤ 1 | Python
+   ≡ƒôª Options_Algorithm
+   ≡ƒô¥ A simple options trading algorithm inside of the QuantConnect platform using the
+   ≡ƒöù https://github.com/cordelljones1996/Options_Algorithm
+   ≡ƒôà Updated: 2026-03-22
+
+16. Γ¡É 2 | ≡ƒì┤ 0 | Java
+   ≡ƒôª MariaAlpha
+   ≡ƒô¥ AI-powered algorithmic trading engine: market data, options pricing & Greeks, ex
+   ≡ƒöù https://github.com/drag0sd0g/MariaAlpha
+   ≡ƒôà Updated: 2026-07-30
+
+17. Γ¡É 1 | ≡ƒì┤ 2 | Python
+   ≡ƒôª finance
+   ≡ƒô¥ Python modules to demonstrate financial concepts such as option pricing and algo
+   ≡ƒöù https://github.com/martyw/finance
+   ≡ƒôà Updated: 2025-12-18
+
+18. Γ¡É 1 | ≡ƒì┤ 1 | Python
+   ≡ƒôª wheel-it
+   ≡ƒô¥ Runnable algo template for trading the Options Wheel strategy
+   ≡ƒöù https://github.com/vahagn-madatyan/wheel-it
+   ≡ƒôà Updated: 2026-05-24
+
+19. Γ¡É 1 | ≡ƒì┤ 1 | Python
+   ≡ƒôª option-buying-algo
+   ≡ƒô¥ Automated intraday options trading bot using Python and broker API
+   ≡ƒöù https://github.com/patidarlokesh/option-buying-algo
+   ≡ƒôà Updated: 2025-06-05
+
+20. Γ¡É 1 | ≡ƒì┤ 0 | Python
+   ≡ƒôª Indian-options-trading-algorithm
+   ≡ƒô¥ Automated, defined-risk options trading system for Indian index derivatives (NIF
+   ≡ƒöù https://github.com/Tanishpd/Indian-options-trading-algorithm
+   ≡ƒôà Updated: 2026-08-11
+
+====================================================================================================
+≡ƒöì India-specific Algo Trading
+====================================================================================================
+
+1. Γ¡É 63 | ≡ƒì┤ 35 | Python
+   ≡ƒôª algo_trading_strategies_india
+   ≡ƒô¥ Open-source Python repository for algorithmic trading on NSE and BSE, focusing o
+   ≡ƒöù https://github.com/buzzsubash/algo_trading_strategies_india
+   ≡ƒôà Updated: 2026-08-26
+
+2. Γ¡É 13 | ≡ƒì┤ 2 | Python
+   ≡ƒôª Algorithmic-Trading-Strategies-Python
+   ≡ƒô¥ Algorithmic Trading Stratagies for stocks listed on National Stock Exchange Indi
+   ≡ƒöù https://github.com/ParthVatsalya/Algorithmic-Trading-Strategies-Python
+   ≡ƒôà Updated: 2025-05-15
+
+3. Γ¡É 2 | ≡ƒì┤ 0 | N/A
+   ≡ƒôª Algorithmic-Trading
+   ≡ƒô¥ Algorithmic trading strategies, articles & software for NSE/BSE India | Python a
+   ≡ƒöù https://github.com/tradevectorsrobots/Algorithmic-Trading
+   ≡ƒôà Updated: 2026-08-26
+
+4. Γ¡É 2 | ≡ƒì┤ 1 | Python
+   ≡ƒôª TradeProject
+   ≡ƒô¥ Production-grade, event-driven algorithmic trading infrastructure for NSE India.
+   ≡ƒöù https://github.com/Algo-Ankit/TradeProject
+   ≡ƒôà Updated: 2026-08-26
+
+5. Γ¡É 1 | ≡ƒì┤ 0 | N/A
+   ≡ƒôª awesome-algo-trading-india
+   ≡ƒô¥ A curated awesome list of algorithmic trading resources, tools, APIs, brokers & 
+   ≡ƒöù https://github.com/tradevectorsrobots/awesome-algo-trading-india
+   ≡ƒôà Updated: 2026-08-26
+
+6. Γ¡É 1 | ≡ƒì┤ 0 | N/A
+   ≡ƒôª AI-ML
+   ≡ƒô¥ AI & Machine Learning for algorithmic trading India | Python ML trading models |
+   ≡ƒöù https://github.com/tradevectorsrobots/AI-ML
+   ≡ƒôà Updated: 2026-08-26
+
+7. Γ¡É 1 | ≡ƒì┤ 0 | Python
+   ≡ƒôª Prosperity-3-Algorithmic-Trading-Competition
+   ≡ƒô¥ Participated in Prosperity 3, an algorithmic trading challenge with 12,000+ team
+   ≡ƒöù https://github.com/yakshmakadia/Prosperity-3-Algorithmic-Trading-Competition
+   ≡ƒôà Updated: 2025-07-11
+
+8. Γ¡É 1 | ≡ƒì┤ 0 | Python
+   ≡ƒôª dhan-nifty-algo-trading-lab
+   ≡ƒô¥ Algorithmic trading research platform for Indian markets (Dhan/NSE) - backtest, 
+   ≡ƒöù https://github.com/builditwithgk/dhan-nifty-algo-trading-lab
+   ≡ƒôà Updated: 2026-08-21
+
+9. Γ¡É 1 | ≡ƒì┤ 0 | Jupyter Notebook
+   ≡ƒôª First_trading_algo_china
+   ≡ƒô¥ A Python-based algorithmic trading strategy that buys the top 10 losers from the
+   ≡ƒöù https://github.com/Husain-Bohra/First_trading_algo_china
+   ≡ƒôà Updated: 2025-07-15
+
+10. Γ¡É 0 | ≡ƒì┤ 0 | N/A
+   ≡ƒôª Python-Based-Algorithmic-Trading-NSE-Website.
+   ≡ƒô¥ Python Algo Trading India
+   ≡ƒöù https://github.com/VBRPrasad/Python-Based-Algorithmic-Trading-NSE-Website.
+   ≡ƒôà Updated: 2025-07-18
+
+11. Γ¡É 0 | ≡ƒì┤ 0 | Python
+   ≡ƒôª Trading-Indian-Market
+   ≡ƒô¥ Python code to check different Trading Algorithms
+   ≡ƒöù https://github.com/shubham99uppal/Trading-Indian-Market
+   ≡ƒôà Updated: 2026-07-12
+
+12. Γ¡É 0 | ≡ƒì┤ 0 | Jupyter Notebook
+   ≡ƒôª First_trading_algo_india
+   ≡ƒô¥ A Python-based algorithmic trading strategy that buys the top 10 losers from the
+   ≡ƒöù https://github.com/Husain-Bohra/First_trading_algo_india
+   ≡ƒôà Updated: 2025-03-04
+
+13. Γ¡É 0 | ≡ƒì┤ 0 | Python
+   ≡ƒôª alpha_panda
+   ≡ƒô¥ A Python-based algorithmic trading application leveraging Redpanda for event str
+   ≡ƒöù https://github.com/Vinodmathewtt/alpha_panda
+   ≡ƒôà Updated: 2025-09-07
+
+14. Γ¡É 0 | ≡ƒì┤ 0 | Jupyter Notebook
+   ≡ƒôª First_trading_algo
+   ≡ƒô¥ A Python-based algorithmic trading strategy that buys the top 10 losers from the
+   ≡ƒöù https://github.com/Husain-Bohra/First_trading_algo
+   ≡ƒôà Updated: 2025-03-04
+
+====================================================================================================
+≡ƒöì Options Trading Strategies
+====================================================================================================
+
+1. Γ¡É 10,631 | ≡ƒì┤ 1,878 | Python
+   ≡ƒôª quant-trading
+   ≡ƒô¥ Python quantitative trading strategies including VIX Calculator, Pattern Recogni
+   ≡ƒöù https://github.com/je-suis-tm/quant-trading
+   ≡ƒôà Updated: 2026-08-27
+
+2. Γ¡É 1,995 | ≡ƒì┤ 381 | Python
+   ≡ƒôª lumibot
+   ≡ƒô¥ Backtestable AI trading agents and Python algorithmic trading strategies for sto
+   ≡ƒöù https://github.com/Lumiwealth/lumibot
+   ≡ƒôà Updated: 2026-08-27
+
+3. Γ¡É 1,061 | ≡ƒì┤ 252 | Python
+   ≡ƒôª Options-Trading-Strategies-in-Python
+   ≡ƒô¥ Developing Options Trading Strategies using Technical Indicators and Quantitativ
+   ≡ƒöù https://github.com/PyPatel/Options-Trading-Strategies-in-Python
+   ≡ƒôà Updated: 2026-08-24
+
+4. Γ¡É 563 | ≡ƒì┤ 112 | Python
+   ≡ƒôª optionlab
+   ≡ƒô¥ A Python library for evaluating option trading strategies.
+   ≡ƒöù https://github.com/rgaveiga/optionlab
+   ≡ƒôà Updated: 2026-08-18
+
+5. Γ¡É 332 | ≡ƒì┤ 214 | Jupyter Notebook
+   ≡ƒôª NSE-Stock-Scanner
+   ≡ƒô¥ National Stock Exchange (NSE), India based Stock screener program. Supports Live
+   ≡ƒöù https://github.com/deshwalmahesh/NSE-Stock-Scanner
+   ≡ƒôà Updated: 2026-08-25
+
+6. Γ¡É 256 | ≡ƒì┤ 27 | Jupyter Notebook
+   ≡ƒôª Short-Term-Reversal-Strategy
+   ≡ƒô¥ Python-based quant trading research project for short-term reversal option setup
+   ≡ƒöù https://github.com/randomwalkhan/Short-Term-Reversal-Strategy
+   ≡ƒôà Updated: 2026-08-27
+
+7. Γ¡É 68 | ≡ƒì┤ 22 | Python
+   ≡ƒôª poptions
+   ≡ƒô¥ Custom Python code for calculating the Probability of Profit (POP) for options t
+   ≡ƒöù https://github.com/Talha-Tariq/poptions
+   ≡ƒôà Updated: 2026-08-15
+
+8. Γ¡É 60 | ≡ƒì┤ 29 | Python
+   ≡ƒôª AI-trader
+   ≡ƒô¥ AI-powered intraday options trading system for NSE F&O. Dual ML models + institu
+   ≡ƒöù https://github.com/aaryansinha16/AI-trader
+   ≡ƒôà Updated: 2026-08-26
+
+9. Γ¡É 50 | ≡ƒì┤ 9 | Python
+   ≡ƒôª Wizardry
+   ≡ƒô¥ ≡ƒÆ½ Wizardry is an open-source CLI for building powerful algorithmic trading strat
+   ≡ƒöù https://github.com/santoshlite/Wizardry
+   ≡ƒôà Updated: 2026-04-08
+
+10. Γ¡É 19 | ≡ƒì┤ 5 | Python
+   ≡ƒôª schwagent
+   ≡ƒô¥ AI-powered algorithmic trading agent for the Charles Schwab API. Python, options
+   ≡ƒöù https://github.com/sbauwow/schwagent
+   ≡ƒôà Updated: 2026-07-29
+
+11. Γ¡É 14 | ≡ƒì┤ 7 | Python
+   ≡ƒôª robotRay
+   ≡ƒô¥ robotRay is a python robo trader bot for several strategies including: 1) naked 
+   ≡ƒöù https://github.com/camilo-rojas/robotRay
+   ≡ƒôà Updated: 2026-04-08
+
+12. Γ¡É 14 | ≡ƒì┤ 3 | Python
+   ≡ƒôª IBKR-trader
+   ≡ƒô¥ An automated trading system that implements vertical spread trading strategies u
+   ≡ƒöù https://github.com/trustdan/IBKR-trader
+   ≡ƒôà Updated: 2026-05-26
+
+13. Γ¡É 13 | ≡ƒì┤ 9 | Python
+   ≡ƒôª tasty-schwab-trader-BE
+   ≡ƒô¥ Multi-strategy algorithmic trading platform designed for institutional-grade aut
+   ≡ƒöù https://github.com/pixelwhiz/tasty-schwab-trader-BE
+   ≡ƒôà Updated: 2026-05-26
+
+14. Γ¡É 13 | ≡ƒì┤ 1 | JavaScript
+   ≡ƒôª FundMakerFdn
+   ≡ƒô¥ FundMaker Strategy SDK is a comprehensive toolkit designed for executing trading
+   ≡ƒöù https://github.com/monsterdev914/FundMakerFdn
+   ≡ƒôà Updated: 2025-10-18
+
+15. Γ¡É 11 | ≡ƒì┤ 5 | Python
+   ≡ƒôª shadow-options-trading-lab
+   ≡ƒô¥ Runs ~20 options strategies against live market data in shadow mode, records eve
+   ≡ƒöù https://github.com/csnyder256/shadow-options-trading-lab
+   ≡ƒôà Updated: 2026-08-15
+
+16. Γ¡É 11 | ≡ƒì┤ 2 | Python
+   ≡ƒôª Option-Hedging-Strategy-Modeling-based-on-Time-Value
+   ≡ƒô¥ Python code for a trading strategy based on time value performed in the SSE 50ET
+   ≡ƒöù https://github.com/lyx66/Option-Hedging-Strategy-Modeling-based-on-Time-Value
+   ≡ƒôà Updated: 2026-05-26
+
+17. Γ¡É 11 | ≡ƒì┤ 1 | Python
+   ≡ƒôª 151-trading-strategies
+   ≡ƒô¥ FastAPI implementation of 68 non-options trading strategies from "151 Trading St
+   ≡ƒöù https://github.com/ThewindMom/151-trading-strategies
+   ≡ƒôà Updated: 2026-08-17
+
+18. Γ¡É 11 | ≡ƒì┤ 1 | N/A
+   ≡ƒôª QuantConnnect
+   ≡ƒô¥ A collection of algorithmic trading strategies for QuantConnect, including strad
+   ≡ƒöù https://github.com/NadirAliOfficial/QuantConnnect
+   ≡ƒôà Updated: 2026-07-30
+
+19. Γ¡É 8 | ≡ƒì┤ 3 | Python
+   ≡ƒôª openalgo-execution-skills
+   ≡ƒô¥ Dual-mode (backtest + live) algorithmic trading strategy skills for OpenAlgo. Ve
+   ≡ƒöù https://github.com/marketcalls/openalgo-execution-skills
+   ≡ƒôà Updated: 2026-08-18
+
+20. Γ¡É 8 | ≡ƒì┤ 0 | Python
+   ≡ƒôª options-volatility-trading-strats
+   ≡ƒô¥ Advanced volatility trading strategies for crypto options. Python implementation
+   ≡ƒöù https://github.com/tfrmma/options-volatility-trading-strats
+   ≡ƒôà Updated: 2026-08-27
+
+====================================================================================================
+≡ƒöì Zerodha Kite API Projects
+====================================================================================================
+
+1. Γ¡É 220 | ≡ƒì┤ 75 | Jupyter Notebook
+   ≡ƒôª Stock_Market_Live_Trading_using_AI
+   ≡ƒô¥ The apex of my CSE tenure at UIET Kurukshetra University in 2018, This project f
+   ≡ƒöù https://github.com/ashishkumar30/Stock_Market_Live_Trading_using_AI
+   ≡ƒôà Updated: 2026-08-12
+
+2. Γ¡É 34 | ≡ƒì┤ 23 | Python
+   ≡ƒôª algorithmic-trading
+   ≡ƒô¥ This is code base for a trading robot using Zerodha Kite Connect API and python
+   ≡ƒöù https://github.com/karthikramx/algorithmic-trading
+   ≡ƒôà Updated: 2026-08-09
+
+3. Γ¡É 28 | ≡ƒì┤ 9 | Python
+   ≡ƒôª APICostFree-Zerodha-Trade
+   ≡ƒô¥ Rest API Python Library for Zerodha Trade without API Cost (Get Rid From 2000 IN
+   ≡ƒöù https://github.com/vikassharma545/APICostFree-Zerodha-Trade
+   ≡ƒôà Updated: 2026-07-14
+
+4. Γ¡É 10 | ≡ƒì┤ 3 | Python
+   ≡ƒôª kite-api-autologin
+   ≡ƒô¥ Single file code to autologin into Kite/ Zerodha python API with External TOTP e
+   ≡ƒöù https://github.com/rajivgpta/kite-api-autologin
+   ≡ƒôà Updated: 2025-09-27
+
+5. Γ¡É 8 | ≡ƒì┤ 10 | Python
+   ≡ƒôª zerodha-python
+   ≡ƒô¥ Zerodha Kite python API implementation
+   ≡ƒöù https://github.com/RajeshSivadasan/zerodha-python
+   ≡ƒôà Updated: 2025-12-12
+
+6. Γ¡É 7 | ≡ƒì┤ 3 | Python
+   ≡ƒôª Zerodha-MCP-Trading
+   ≡ƒô¥ MCP server for Zerodha's Kite API. Gives an LLM the tools to read market data, r
+   ≡ƒöù https://github.com/SirCharan/Zerodha-MCP-Trading
+   ≡ƒôà Updated: 2026-08-14
+
+7. Γ¡É 6 | ≡ƒì┤ 4 | Python
+   ≡ƒôª generate-zerodha-access-token
+   ≡ƒô¥ Here is simple and easy way for generating zerodha access key programmatically u
+   ≡ƒöù https://github.com/kanchanbartwal/generate-zerodha-access-token
+   ≡ƒôà Updated: 2025-04-08
+
+8. Γ¡É 4 | ≡ƒì┤ 1 | TypeScript
+   ≡ƒôª zerodha-automated-trading
+   ≡ƒô¥ Automated trading platform using Zerodha Kite API with a Next.js frontend and Py
+   ≡ƒöù https://github.com/somshrivastava/zerodha-automated-trading
+   ≡ƒôà Updated: 2026-08-27
+
+9. Γ¡É 3 | ≡ƒì┤ 2 | Python
+   ≡ƒôª High-Low-strategy-using-kiteconnect-zerodha-Algorithmic-Trading-
+   ≡ƒô¥ Python program to connect zerodha Kiteconnect API and buy/sell based on your alg
+   ≡ƒöù https://github.com/sachin2404/High-Low-strategy-using-kiteconnect-zerodha-Algorithmic-Trading-
+   ≡ƒôà Updated: 2023-12-08
+
+10. Γ¡É 3 | ≡ƒì┤ 0 | CSS
+   ≡ƒôª Trading_Buddy_Zerodha
+   ≡ƒô¥ Automate your trading activities and control customer loss with this Python appl
+   ≡ƒöù https://github.com/shivanand007/Trading_Buddy_Zerodha
+   ≡ƒôà Updated: 2023-07-26
+
+11. Γ¡É 2 | ≡ƒì┤ 1 | Python
+   ≡ƒôª stock_trading_bot_assignment
+   ≡ƒô¥ A trading bot written on python that us Zerodha Kite API to trade stocks on Simp
+   ≡ƒöù https://github.com/peace0563/stock_trading_bot_assignment
+   ≡ƒôà Updated: 2024-07-22
+
+12. Γ¡É 2 | ≡ƒì┤ 1 | Python
+   ≡ƒôª Python-for-Indian-Traders
+   ≡ƒô¥ Beginner friendly NSE algo trading lab using Python. Includes Zerodha Kite API e
+   ≡ƒöù https://github.com/SankarSrinivasan1/Python-for-Indian-Traders
+   ≡ƒôà Updated: 2026-07-31
+
+13. Γ¡É 1 | ≡ƒì┤ 0 | HTML
+   ≡ƒôª py_back_test
+   ≡ƒô¥ Learning python.  Trading back test software in Python to look at 1min OHLC data
+   ≡ƒöù https://github.com/Nagarajran/py_back_test
+   ≡ƒôà Updated: 2022-09-22
+
+14. Γ¡É 1 | ≡ƒì┤ 0 | N/A
+   ≡ƒôª WahatConnect
+   ≡ƒô¥ wahatconnect is a Python-based algorithmic trading bot that leverages Zerodha's 
+   ≡ƒöù https://github.com/oasisgm/WahatConnect
+   ≡ƒôà Updated: 2025-04-01
+
+15. Γ¡É 1 | ≡ƒì┤ 0 | Python
+   ≡ƒôª varsity-algo
+   ≡ƒô¥ The Zerodha Varsity 'build a trading algo with AI' video, built end to end and b
+   ≡ƒöù https://github.com/sachincse/varsity-algo
+   ≡ƒôà Updated: 2026-08-27
+
+16. Γ¡É 0 | ≡ƒì┤ 0 | N/A
+   ≡ƒôª Zerodha-Kiteconnect-API-With-Python
+   ≡ƒô¥ This repo is for Algo Traders who are facing problem with Zerodha Kiteconnect AP
+   ≡ƒöù https://github.com/Mukesh-Kumar-Madhur/Zerodha-Kiteconnect-API-With-Python
+   ≡ƒôà Updated: 2024-12-17
+
+17. Γ¡É 0 | ≡ƒì┤ 0 | N/A
+   ≡ƒôª zerodha-algo-trading
+   ≡ƒô¥ Algo trading using Python and Zerodha Kite API
+   ≡ƒöù https://github.com/coder-saurav/zerodha-algo-trading
+   ≡ƒôà Updated: 2025-09-20
+
+18. Γ¡É 0 | ≡ƒì┤ 0 | Python
+   ≡ƒôª pykitesmu
+   ≡ƒô¥ Simulation for zerodha kite connect API in python
+   ≡ƒöù https://github.com/harikongu/pykitesmu
+   ≡ƒôà Updated: 2021-03-24
+
+19. Γ¡É 0 | ≡ƒì┤ 0 | Python
+   ≡ƒôª ZerodhaLiveExcel
+   ≡ƒô¥ This project provides a Python-based backend to fetch live tick data from Zerodh
+   ≡ƒöù https://github.com/Jaimin7632/ZerodhaLiveExcel
+   ≡ƒôà Updated: 2026-03-17
+
+20. Γ¡É 0 | ≡ƒì┤ 0 | N/A
+   ≡ƒôª PyKiteAuth
+   ≡ƒô¥ Simplified Zerodha Kite API authentication for Python. Generate access tokens ef
+   ≡ƒöù https://github.com/abhichaudharii/PyKiteAuth
+   ≡ƒôà Updated: 2023-07-04
+
+====================================================================================================
+≡ƒöì NSE Options Trading
+====================================================================================================
+
+1. Γ¡É 332 | ≡ƒì┤ 214 | Jupyter Notebook
+   ≡ƒôª NSE-Stock-Scanner
+   ≡ƒô¥ National Stock Exchange (NSE), India based Stock screener program. Supports Live
+   ≡ƒöù https://github.com/deshwalmahesh/NSE-Stock-Scanner
+   ≡ƒôà Updated: 2026-08-25
+
+2. Γ¡É 83 | ≡ƒì┤ 55 | Python
+   ≡ƒôª alice-blue-futures
+   ≡ƒô¥ Fully automated Algorithmic Trading Bot created with Python for Alice Blue broke
+   ≡ƒöù https://github.com/RajeshSivadasan/alice-blue-futures
+   ≡ƒôà Updated: 2026-08-02
+
+3. Γ¡É 63 | ≡ƒì┤ 35 | Python
+   ≡ƒôª algo_trading_strategies_india
+   ≡ƒô¥ Open-source Python repository for algorithmic trading on NSE and BSE, focusing o
+   ≡ƒöù https://github.com/buzzsubash/algo_trading_strategies_india
+   ≡ƒôà Updated: 2026-08-26
+
+4. Γ¡É 60 | ≡ƒì┤ 29 | Python
+   ≡ƒôª AI-trader
+   ≡ƒô¥ AI-powered intraday options trading system for NSE F&O. Dual ML models + institu
+   ≡ƒöù https://github.com/aaryansinha16/AI-trader
+   ≡ƒôà Updated: 2026-08-26
+
+5. Γ¡É 21 | ≡ƒì┤ 12 | Jupyter Notebook
+   ≡ƒôª NIFTY-BANKNIFTY-CALL-PUT-Live-Market-Analysis
+   ≡ƒô¥ A live python program based on fetching live data from nse option chain and moni
+   ≡ƒöù https://github.com/raval137/NIFTY-BANKNIFTY-CALL-PUT-Live-Market-Analysis
+   ≡ƒôà Updated: 2026-08-10
+
+6. Γ¡É 5 | ≡ƒì┤ 2 | Python
+   ≡ƒôª nsemine
+   ≡ƒô¥ Efficient and Reliable Python Library for Scraping Real-Time and Historical Data
+   ≡ƒöù https://github.com/kbizme/nsemine
+   ≡ƒôà Updated: 2026-07-22
+
+7. Γ¡É 3 | ≡ƒì┤ 2 | N/A
+   ≡ƒôª upx-momentum-nse
+   ≡ƒô¥ Upstox Intraday Momentum Algo (NSE EQ, F&O, Nifty/BankNifty options) Python fram
+   ≡ƒöù https://github.com/3vikramrao/upx-momentum-nse
+   ≡ƒôà Updated: 2026-06-20
+
+8. Γ¡É 2 | ≡ƒì┤ 1 | Python
+   ≡ƒôª TradeProject
+   ≡ƒô¥ Production-grade, event-driven algorithmic trading infrastructure for NSE India.
+   ≡ƒöù https://github.com/Algo-Ankit/TradeProject
+   ≡ƒôà Updated: 2026-08-26
+
+9. Γ¡É 2 | ≡ƒì┤ 2 | Python
+   ≡ƒôª gex-alerts
+   ≡ƒô¥ A Python system that fetches NSE option chain data from Upstox, computes Gamma E
+   ≡ƒöù https://github.com/neeleshroy2023/gex-alerts
+   ≡ƒôà Updated: 2026-06-14
+
+10. Γ¡É 1 | ≡ƒì┤ 0 | N/A
+   ≡ƒôª nse-data-resources
+   ≡ƒô¥ NSE BSE market data APIs, tools & providers for algo trading India | Historical 
+   ≡ƒöù https://github.com/tradevectorsrobots/nse-data-resources
+   ≡ƒôà Updated: 2026-08-26
+
+11. Γ¡É 1 | ≡ƒì┤ 0 | Python
+   ≡ƒôª nubra-python-sdk
+   ≡ƒô¥ Official Python SDK for Nubra Trading & Market Data APIs
+   ≡ƒöù https://github.com/NubraAPI/nubra-python-sdk
+   ≡ƒôà Updated: 2026-03-28
+
+12. Γ¡É 1 | ≡ƒì┤ 0 | Python
+   ≡ƒôª algo-fno-trading-bot
+   ≡ƒô¥ Algorithmic options trading bot for NSE F&O (NIFTY/BANKNIFTY) with HMM regime de
+   ≡ƒöù https://github.com/nagnathsherikar/algo-fno-trading-bot
+   ≡ƒôà Updated: 2026-08-16
+
+13. Γ¡É 1 | ≡ƒì┤ 0 | Python
+   ≡ƒôª deltaforge
+   ≡ƒô¥ Autonomous Nifty options trading ΓÇö backtest, paper-trade, and go live with the s
+   ≡ƒöù https://github.com/mimran-khan/deltaforge
+   ≡ƒôà Updated: 2026-08-27
+
+14. Γ¡É 1 | ≡ƒì┤ 0 | Python
+   ≡ƒôª dhan-nifty-algo-trading-lab
+   ≡ƒô¥ Algorithmic trading research platform for Indian markets (Dhan/NSE) - backtest, 
+   ≡ƒöù https://github.com/builditwithgk/dhan-nifty-algo-trading-lab
+   ≡ƒôà Updated: 2026-08-21
+
+15. Γ¡É 1 | ≡ƒì┤ 1 | Python
+   ≡ƒôª nifty_bot
+   ≡ƒô¥ Intelligent Nifty Option Buying Bot (Upstox + Telegram) A robust Python algorith
+   ≡ƒöù https://github.com/udhay8005/nifty_bot
+   ≡ƒôà Updated: 2025-12-31
+
+16. Γ¡É 0 | ≡ƒì┤ 2 | N/A
+   ≡ƒôª Options-Trading-Bot
+   ≡ƒô¥ A high-performance, modular options trading platform for the Indian market NSE/B
+   ≡ƒöù https://github.com/ShabbirHasan1/Options-Trading-Bot
+   ≡ƒôà Updated: 2025-09-30
+
+17. Γ¡É 0 | ≡ƒì┤ 0 | Python
+   ≡ƒôª NSE-Options-Trading-Analyzer
+   ≡ƒô¥ A Python desktop application for analyzing NSE options trading data with strike 
+   ≡ƒöù https://github.com/Priyansh0412/NSE-Options-Trading-Analyzer
+   ≡ƒôà Updated: 2025-10-03
+
+18. Γ¡É 0 | ≡ƒì┤ 0 | Python
+   ≡ƒôª Assignment3
+   ≡ƒô¥ A Python program for analyzing NSE options trading data with strike price and IR
+   ≡ƒöù https://github.com/Akashbal1209/Assignment3
+   ≡ƒôà Updated: 2025-11-27
+
+19. Γ¡É 0 | ≡ƒì┤ 0 | Python
+   ≡ƒôª nifty-options-paper-trading-bot
+   ≡ƒô¥ Paper-trading web app for a defined-risk NIFTY iron-condor short-strangle strate
+   ≡ƒöù https://github.com/jayadevrana/nifty-options-paper-trading-bot
+   ≡ƒôà Updated: 2026-08-08
+
+20. Γ¡É 0 | ≡ƒì┤ 0 | Python
+   ≡ƒôª ai-algorithmic-trading-bot
+   ≡ƒô¥ AI-assisted intraday NSE options trading bot using Python, Angel One SmartAPI, C
+   ≡ƒöù https://github.com/KR1SHNA464/ai-algorithmic-trading-bot
+   ≡ƒôà Updated: 2026-05-28
+
+====================================================================================================
+≡ƒöì Momentum Trading Strategies
+====================================================================================================
+
+1. Γ¡É 5,181 | ≡ƒì┤ 1,153 | Jupyter Notebook
+   ≡ƒôª ta
+   ≡ƒô¥ Technical Analysis Library using Pandas and Numpy
+   ≡ƒöù https://github.com/bukosabino/ta
+   ≡ƒôà Updated: 2026-08-27
+
+2. Γ¡É 332 | ≡ƒì┤ 214 | Jupyter Notebook
+   ≡ƒôª NSE-Stock-Scanner
+   ≡ƒô¥ National Stock Exchange (NSE), India based Stock screener program. Supports Live
+   ≡ƒöù https://github.com/deshwalmahesh/NSE-Stock-Scanner
+   ≡ƒôà Updated: 2026-08-25
+
+3. Γ¡É 272 | ≡ƒì┤ 63 | Python
+   ≡ƒôª agentic-trading-desk
+   ≡ƒô¥ AI-assisted trading desk for short-term technical analysis on stocks & ETFs via 
+   ≡ƒöù https://github.com/Oft3r/agentic-trading-desk
+   ≡ƒôà Updated: 2026-08-26
+
+4. Γ¡É 64 | ≡ƒì┤ 19 | Jupyter Notebook
+   ≡ƒôª Building-A-Trading-Strategy-With-Python
+   ≡ƒô¥ trading strategy is a fixed plan to go long or short in markets,  there are two 
+   ≡ƒöù https://github.com/bideeen/Building-A-Trading-Strategy-With-Python
+   ≡ƒôà Updated: 2026-07-03
+
+5. Γ¡É 61 | ≡ƒì┤ 20 | Python
+   ≡ƒôª Dual-Momentum-Trading-Bot
+   ≡ƒô¥ A trading bot utilized on the TD Ameritrade platform written in python and utili
+   ≡ƒöù https://github.com/johnhou13579/Dual-Momentum-Trading-Bot
+   ≡ƒôà Updated: 2026-07-16
+
+6. Γ¡É 60 | ≡ƒì┤ 19 | HTML
+   ≡ƒôª trading-with-momentum
+   ≡ƒô¥ Implement a momentum trading strategy in Python and test to see if it has the po
+   ≡ƒöù https://github.com/sanjeevai/trading-with-momentum
+   ≡ƒôà Updated: 2026-08-20
+
+7. Γ¡É 24 | ≡ƒì┤ 2 | Python
+   ≡ƒôª BinanceUS-Crypto-Trading-Bot
+   ≡ƒô¥ Binance.US crypto trading bot. Implemented with Python, python-binance library, 
+   ≡ƒöù https://github.com/LeviathanLevi/BinanceUS-Crypto-Trading-Bot
+   ≡ƒôà Updated: 2026-08-17
+
+8. Γ¡É 23 | ≡ƒì┤ 12 | Jupyter Notebook
+   ≡ƒôª oandamomentum
+   ≡ƒô¥ Building a time series momentum strategy for Oanda by following this guide: http
+   ≡ƒöù https://github.com/benjaminchodroff/oandamomentum
+   ≡ƒôà Updated: 2024-11-13
+
+9. Γ¡É 22 | ≡ƒì┤ 6 | Python
+   ≡ƒôª ai-momentum-trader
+   ≡ƒô¥ One AI-picked momentum trade a day on Robinhood ΓÇö stocks & options, hands off. C
+   ≡ƒöù https://github.com/merjua14/ai-momentum-trader
+   ≡ƒôà Updated: 2026-08-04
+
+10. Γ¡É 20 | ≡ƒì┤ 2 | Python
+   ≡ƒôª AutoTrader-AgentEdge
+   ≡ƒô¥ Production multi-agent trading platform with rigorous walk-forward validation. T
+   ≡ƒöù https://github.com/iAmGiG/AutoTrader-AgentEdge
+   ≡ƒôà Updated: 2026-08-07
+
+11. Γ¡É 19 | ≡ƒì┤ 3 | Python
+   ≡ƒôª AstroTick
+   ≡ƒô¥ ≡ƒÜÇ Trade Bitcoin prediction markets on autopilot with this automated Kalshi tradi
+   ≡ƒöù https://github.com/Razzleberryss/AstroTick
+   ≡ƒôà Updated: 2026-08-27
+
+12. Γ¡É 16 | ≡ƒì┤ 0 | Python
+   ≡ƒôª strategy-orb15-momentum
+   ≡ƒô¥ Opening Range Breakout system in Python ΓÇö reproducible backtest, risk management
+   ≡ƒöù https://github.com/jefrnc/strategy-orb15-momentum
+   ≡ƒôà Updated: 2026-08-11
+
+13. Γ¡É 15 | ≡ƒì┤ 2 | Jupyter Notebook
+   ≡ƒôª A-Backtest-A-Day
+   ≡ƒô¥ A backtest a day keeps the losses away!
+   ≡ƒöù https://github.com/replacementAI/A-Backtest-A-Day
+   ≡ƒôà Updated: 2026-02-24
+
+14. Γ¡É 14 | ≡ƒì┤ 3 | HTML
+   ≡ƒôª algorithmic-trading-technical-indicators
+   ≡ƒô¥ Python implementation of simple algorithmic trading strategies using Momentum an
+   ≡ƒöù https://github.com/Mortiniera/algorithmic-trading-technical-indicators
+   ≡ƒôà Updated: 2025-11-14
+
+15. Γ¡É 12 | ≡ƒì┤ 3 | Python
+   ≡ƒôª Momentum-Trading-Assistant
+   ≡ƒô¥ Momentum Trading Assistant (MTA) is a python program designed to replace a Momen
+   ≡ƒöù https://github.com/Piidas/Momentum-Trading-Assistant
+   ≡ƒôà Updated: 2026-06-19
+
+16. Γ¡É 11 | ≡ƒì┤ 10 | Jupyter Notebook
+   ≡ƒôª Python-for-Algorithmic-Trading-From-Idea-to-Cloud-Deployment
+   ≡ƒô¥ This code gives a broad introduction to 4 different Algorithmic Trading Strategi
+   ≡ƒöù https://github.com/TimBstn/Python-for-Algorithmic-Trading-From-Idea-to-Cloud-Deployment
+   ≡ƒôà Updated: 2026-05-05
+
+17. Γ¡É 11 | ≡ƒì┤ 0 | Python
+   ≡ƒôª momentum-trading-backtester-
+   ≡ƒô¥ Momentum investing strategy backtester with statistical validation and interacti
+   ≡ƒöù https://github.com/utplawan/momentum-trading-backtester-
+   ≡ƒôà Updated: 2026-08-24
+
+18. Γ¡É 11 | ≡ƒì┤ 3 | HTML
+   ≡ƒôª stock_scanner
+   ≡ƒô¥ ≡ƒôê Professional momentum stock scanner using Qullamaggie methodology - 20-point s
+   ≡ƒöù https://github.com/Sensible-Analytics/stock_scanner
+   ≡ƒôà Updated: 2026-08-20
+
+19. Γ¡É 10 | ≡ƒì┤ 6 | Python
+   ≡ƒôª dse-momentum
+   ≡ƒô¥ Using Python to Backtest and Evaluate Trading Strategies in the Dhaka Stock Exch
+   ≡ƒöù https://github.com/amdfad/dse-momentum
+   ≡ƒôà Updated: 2026-02-14
+
+20. Γ¡É 10 | ≡ƒì┤ 1 | Jupyter Notebook
+   ≡ƒôª Algorithmic_Trading
+   ≡ƒô¥ This repository contains python code to create, backtest and automate intraday-t
+   ≡ƒöù https://github.com/BearsOnMars/Algorithmic_Trading
+   ≡ƒôà Updated: 2025-10-30
+
+====================================================================================================
+≡ƒöì Backtesting Frameworks
+====================================================================================================
+
+1. Γ¡É 5,035 | ≡ƒì┤ 655 | HTML
+   ≡ƒôª awesome-systematic-trading
+   ≡ƒô¥ A curated list of insanely awesome libraries, packages and resources for systema
+   ≡ƒöù https://github.com/wangzhe3224/awesome-systematic-trading
+   ≡ƒôà Updated: 2026-08-27
+
+2. Γ¡É 1,995 | ≡ƒì┤ 381 | Python
+   ≡ƒôª lumibot
+   ≡ƒô¥ Backtestable AI trading agents and Python algorithmic trading strategies for sto
+   ≡ƒöù https://github.com/Lumiwealth/lumibot
+   ≡ƒôà Updated: 2026-08-27
+
+3. Γ¡É 1,463 | ≡ƒì┤ 223 | Python
+   ≡ƒôª optopsy
+   ≡ƒô¥ A nimble options research and backtesting library for Python
+   ≡ƒöù https://github.com/goldspanlabs/optopsy
+   ≡ƒôà Updated: 2026-08-27
+
+4. Γ¡É 332 | ≡ƒì┤ 214 | Jupyter Notebook
+   ≡ƒôª NSE-Stock-Scanner
+   ≡ƒô¥ National Stock Exchange (NSE), India based Stock screener program. Supports Live
+   ≡ƒöù https://github.com/deshwalmahesh/NSE-Stock-Scanner
+   ≡ƒôà Updated: 2026-08-25
+
+5. Γ¡É 256 | ≡ƒì┤ 27 | Jupyter Notebook
+   ≡ƒôª Short-Term-Reversal-Strategy
+   ≡ƒô¥ Python-based quant trading research project for short-term reversal option setup
+   ≡ƒöù https://github.com/randomwalkhan/Short-Term-Reversal-Strategy
+   ≡ƒôà Updated: 2026-08-27
+
+6. Γ¡É 176 | ≡ƒì┤ 66 | Jupyter Notebook
+   ≡ƒôª Option-strategies-backtesting-in-Python
+   ≡ƒô¥ Python codes used in book 'Option Greeks Strategies & Backtesting in Python'
+   ≡ƒöù https://github.com/OptionsnPython/Option-strategies-backtesting-in-Python
+   ≡ƒôà Updated: 2026-08-02
+
+7. Γ¡É 150 | ≡ƒì┤ 27 | Python
+   ≡ƒôª harvest
+   ≡ƒô¥ Simple and intuitive Python framework for algorithmic trading. Easily create bot
+   ≡ƒöù https://github.com/tfukaza/harvest
+   ≡ƒôà Updated: 2026-08-09
+
+8. Γ¡É 66 | ≡ƒì┤ 2 | Jupyter Notebook
+   ≡ƒôª bsm-time-machine
+   ≡ƒô¥ A Black-Scholes-based options backtesting simulator
+   ≡ƒöù https://github.com/m12t/bsm-time-machine
+   ≡ƒôà Updated: 2026-04-21
+
+9. Γ¡É 59 | ≡ƒì┤ 22 | Jupyter Notebook
+   ≡ƒôª backtesting_and_algotrading_options_with_Interactive_Brokers_API
+   ≡ƒô¥ backtesting and algotrading options using Interactive Brokers API (native python
+   ≡ƒöù https://github.com/AlexShakaev/backtesting_and_algotrading_options_with_Interactive_Brokers_API
+   ≡ƒôà Updated: 2026-07-02
+
+10. Γ¡É 39 | ≡ƒì┤ 8 | Jupyter Notebook
+   ≡ƒôª volatility-trading
+   ≡ƒô¥ Systematic Volatility Research and Backtesting for equity options
+   ≡ƒöù https://github.com/anthonymakarewicz/volatility-trading
+   ≡ƒôà Updated: 2026-08-27
+
+11. Γ¡É 23 | ≡ƒì┤ 16 | Jupyter Notebook
+   ≡ƒôª Algorithmic-Trading---Backtesting---Banknifty-Straddle-using-Python
+   ≡ƒô¥ Python code of complete backtest of Banknifty Option Straddle
+   ≡ƒöù https://github.com/umeshpalai/Algorithmic-Trading---Backtesting---Banknifty-Straddle-using-Python
+   ≡ƒôà Updated: 2026-06-30
+
+12. Γ¡É 21 | ≡ƒì┤ 0 | Jupyter Notebook
+   ≡ƒôª Quant-Trading-Projects
+   ≡ƒô¥ 11 hands-on quant trading projects in Python: backtesting, options pricing, stat
+   ≡ƒöù https://github.com/Skyboi94/Quant-Trading-Projects
+   ≡ƒôà Updated: 2026-08-06
+
+13. Γ¡É 19 | ≡ƒì┤ 5 | Python
+   ≡ƒôª schwagent
+   ≡ƒô¥ AI-powered algorithmic trading agent for the Charles Schwab API. Python, options
+   ≡ƒöù https://github.com/sbauwow/schwagent
+   ≡ƒôà Updated: 2026-07-29
+
+14. Γ¡É 17 | ≡ƒì┤ 2 | Python
+   ≡ƒôª ibkr-odte-strategies
+   ≡ƒô¥ 0DTE options research for Interactive Brokers ΓÇö Python scripts to develop, backt
+   ≡ƒöù https://github.com/jefrnc/ibkr-odte-strategies
+   ≡ƒôà Updated: 2026-08-19
+
+15. Γ¡É 14 | ≡ƒì┤ 11 | HTML
+   ≡ƒôª spx_options_backtesting
+   ≡ƒô¥ Python Scripts for Backtesting SPX Put Strategies Using Black-Scholes Proxies
+   ≡ƒöù https://github.com/auto-d1dact/spx_options_backtesting
+   ≡ƒôà Updated: 2026-03-21
+
+16. Γ¡É 13 | ≡ƒì┤ 1 | JavaScript
+   ≡ƒôª FundMakerFdn
+   ≡ƒô¥ FundMaker Strategy SDK is a comprehensive toolkit designed for executing trading
+   ≡ƒöù https://github.com/monsterdev914/FundMakerFdn
+   ≡ƒôà Updated: 2025-10-18
+
+17. Γ¡É 12 | ≡ƒì┤ 2 | Rust
+   ≡ƒôª quantwave
+   ≡ƒô¥ High-performance, Polars-native technical analysis in Python and Rust with 221 N
+   ≡ƒöù https://github.com/lavs9/quantwave
+   ≡ƒôà Updated: 2026-08-23
+
+18. Γ¡É 11 | ≡ƒì┤ 5 | Python
+   ≡ƒôª shadow-options-trading-lab
+   ≡ƒô¥ Runs ~20 options strategies against live market data in shadow mode, records eve
+   ≡ƒöù https://github.com/csnyder256/shadow-options-trading-lab
+   ≡ƒôà Updated: 2026-08-15
+
+19. Γ¡É 11 | ≡ƒì┤ 1 | N/A
+   ≡ƒôª QuantConnnect
+   ≡ƒô¥ A collection of algorithmic trading strategies for QuantConnect, including strad
+   ≡ƒöù https://github.com/NadirAliOfficial/QuantConnnect
+   ≡ƒôà Updated: 2026-07-30
+
+20. Γ¡É 9 | ≡ƒì┤ 4 | Python
+   ≡ƒôª quantlab
+   ≡ƒô¥ ≡ƒÜÇ Professional quantitative trading research platform with ML-powered backtestin
+   ≡ƒöù https://github.com/nittygritty-zzy/quantlab
+   ≡ƒôà Updated: 2026-06-29
+
+====================================================================================================
+≡ƒöì Quantitative Trading
+====================================================================================================
+
+1. Γ¡É 11,134 | ≡ƒì┤ 2,336 | Python
+   ≡ƒôª QuantDinger
+   ≡ƒô¥ AI quantitative trading platform for crypto, stocks, and forex with backtesting,
+   ≡ƒöù https://github.com/OpenByteInc/QuantDinger
+   ≡ƒôà Updated: 2026-08-27
+
+2. Γ¡É 10,631 | ≡ƒì┤ 1,878 | Python
+   ≡ƒôª quant-trading
+   ≡ƒô¥ Python quantitative trading strategies including VIX Calculator, Pattern Recogni
+   ≡ƒöù https://github.com/je-suis-tm/quant-trading
+   ≡ƒôà Updated: 2026-08-27
+
+3. Γ¡É 5,386 | ≡ƒì┤ 1,719 | N/A
+   ≡ƒôª strategies
+   ≡ƒô¥ quantitative trading with Javascript, Python, C++, PineScript, Blockly, MyLangua
+   ≡ƒöù https://github.com/fmzquant/strategies
+   ≡ƒôà Updated: 2026-08-27
+
+4. Γ¡É 3,052 | ≡ƒì┤ 557 | Jupyter Notebook
+   ≡ƒôª TradeMaster
+   ≡ƒô¥ TradeMaster is an open-source platform for quantitative trading empowered by rei
+   ≡ƒöù https://github.com/TradeMaster-NTU/TradeMaster
+   ≡ƒôà Updated: 2026-08-27
+
+5. Γ¡É 2,899 | ≡ƒì┤ 602 | Python
+   ≡ƒôª QuantMuse
+   ≡ƒô¥ A comprehensive quantitative trading system with AI-powered analysis, real-time 
+   ≡ƒöù https://github.com/0xemmkty/QuantMuse
+   ≡ƒôà Updated: 2026-08-27
+
+6. Γ¡É 2,100 | ≡ƒì┤ 274 | Python
+   ≡ƒôª akquant
+   ≡ƒô¥ AKQuant is a high-performance quantitative research and trading framework built 
+   ≡ƒöù https://github.com/akfamily/akquant
+   ≡ƒôà Updated: 2026-08-27
+
+7. Γ¡É 1,890 | ≡ƒì┤ 273 | Python
+   ≡ƒôª investing-algorithm-framework
+   ≡ƒô¥ Framework for quantitative trading. Complete framework for development, backtest
+   ≡ƒöù https://github.com/coding-kitties/investing-algorithm-framework
+   ≡ƒôà Updated: 2026-08-27
+
+8. Γ¡É 1,393 | ≡ƒì┤ 215 | Jupyter Notebook
+   ≡ƒôª Quantitative-Notebooks
+   ≡ƒô¥ Educational notebooks on quantitative finance, algorithmic trading, financial mo
+   ≡ƒöù https://github.com/LongOnly/Quantitative-Notebooks
+   ≡ƒôà Updated: 2026-08-25
+
+9. Γ¡É 1,196 | ≡ƒì┤ 102 | Python
+   ≡ƒôª botflow
+   ≡ƒô¥ Python Fast Dataflow programming  framework for Data pipeline work( Web Crawler,
+   ≡ƒöù https://github.com/kkyon/botflow
+   ≡ƒôà Updated: 2026-05-04
+
+10. Γ¡É 1,153 | ≡ƒì┤ 315 | Python
+   ≡ƒôª bitquant
+   ≡ƒô¥ 51bitquant Pythonµò░σ¡ùΦ┤ºσ╕üΘçÅσîûΣ║ñµÿôΦºåΘóæ CCXTµíåµ₧╢ τê¼σÅûΣ║ñµÿôµëÇµò░µì« µ»öτë╣σ╕üΘçÅσîûΣ║ñµÿô Σ║ñµÿôµ£║σÖ¿Σ║║51bitquant tradingbot cr
+   ≡ƒöù https://github.com/51bitquant/bitquant
+   ≡ƒôà Updated: 2026-08-20
+
+11. Γ¡É 1,061 | ≡ƒì┤ 252 | Python
+   ≡ƒôª Options-Trading-Strategies-in-Python
+   ≡ƒô¥ Developing Options Trading Strategies using Technical Indicators and Quantitativ
+   ≡ƒöù https://github.com/PyPatel/Options-Trading-Strategies-in-Python
+   ≡ƒôà Updated: 2026-08-24
+
+12. Γ¡É 956 | ≡ƒì┤ 137 | Python
+   ≡ƒôª qf-lib
+   ≡ƒô¥ Modular Python library that provides an advanced event driven backtester and a s
+   ≡ƒöù https://github.com/quarkfin/qf-lib
+   ≡ƒôà Updated: 2026-08-27
+
+13. Γ¡É 947 | ≡ƒì┤ 334 | Python
+   ≡ƒôª howtrader
+   ≡ƒô¥ Howtrader: A crypto quant framework for developing, backtesting, and executing y
+   ≡ƒöù https://github.com/51bitquant/howtrader
+   ≡ƒôà Updated: 2026-08-20
+
+14. Γ¡É 377 | ≡ƒì┤ 65 | Python
+   ≡ƒôª trading-strategy
+   ≡ƒô¥ Python framework for quantitative financial analysis and trading algorithms on d
+   ≡ƒöù https://github.com/tradingstrategy-ai/trading-strategy
+   ≡ƒôà Updated: 2026-08-17
+
+15. Γ¡É 321 | ≡ƒì┤ 133 | Jupyter Notebook
+   ≡ƒôª trading-with-python
+   ≡ƒô¥ Code that is (re)usable in in daily tasks involving development of quantitative 
+   ≡ƒöù https://github.com/sjev/trading-with-python
+   ≡ƒôà Updated: 2026-06-30
+
+16. Γ¡É 316 | ≡ƒì┤ 111 | Python
+   ≡ƒôª DeltaTrader
+   ≡ƒô¥ Python Toolkit For Quantitative Trading
+   ≡ƒöù https://github.com/Delta-F/DeltaTrader
+   ≡ƒôà Updated: 2026-08-17
+
+17. Γ¡É 296 | ≡ƒì┤ 134 | Jupyter Notebook
+   ≡ƒôª quants-lab
+   ≡ƒô¥ Quants Lab is a Python project for quantitative research with Hummingbot. It pro
+   ≡ƒöù https://github.com/hummingbot/quants-lab
+   ≡ƒôà Updated: 2026-08-07
+
+18. Γ¡É 278 | ≡ƒì┤ 90 | Jupyter Notebook
+   ≡ƒôª Quantitative-Trading
+   ≡ƒô¥ ΘçÅσîûµèòΦ╡ä
+   ≡ƒöù https://github.com/Miya-Su/Quantitative-Trading
+   ≡ƒôà Updated: 2026-07-25
+
+19. Γ¡É 237 | ≡ƒì┤ 86 | Python
+   ≡ƒôª AlphaSuite
+   ≡ƒô¥ AlphaSuite is an open-source quantitative analysis platform that gives you the p
+   ≡ƒöù https://github.com/rsandx/AlphaSuite
+   ≡ƒôà Updated: 2026-08-25
+
+20. Γ¡É 150 | ≡ƒì┤ 38 | R
+   ≡ƒôª Algo-Trading
+   ≡ƒô¥ This is my github repository where I post trading strategies, tutorials and rese
+   ≡ƒöù https://github.com/Manudecara/Algo-Trading
+   ≡ƒôà Updated: 2026-08-21
+
+====================================================================================================
+≡ƒÆ╛ Results saved to results/github_repos.json
+====================================================================================================
+
+====================================================================================================
+≡ƒÄ» RECOMMENDED REPOSITORIES FOR NSE OPTIONS ALGO TRADING
+====================================================================================================
+
+1. freqtrade (25k+ stars)
+   ≡ƒöù https://github.com/freqtrade/freqtrade
+   ≡ƒÆí Why: Most popular crypto trading bot, can be adapted for options
+   Γ£à Pros: Well-tested, Active community, Good backtesting
+   ΓÜá∩╕Å  Cons: Crypto-focused, Needs adaptation for NSE
+
+2. zipline (17k+ stars)
+   ≡ƒöù https://github.com/quantopian/zipline
+   ≡ƒÆí Why: Quantopian backtesting engine, industry-standard
+   Γ£à Pros: Professional-grade, Excellent backtesting, Well-documented
+   ΓÜá∩╕Å  Cons: US markets focused, Complex setup
+
+3. backtrader (13k+ stars)
+   ≡ƒöù https://github.com/mementum/backtrader
+   ≡ƒÆí Why: Python backtesting library, very flexible
+   Γ£à Pros: Easy to use, Good for options, Active development
+   ΓÜá∩╕Å  Cons: Learning curve, Documentation could be better
+
+4. vnpy (23k+ stars)
+   ≡ƒöù https://github.com/vnpy/vnpy
+   ≡ƒÆí Why: Full-featured trading platform, supports multiple brokers
+   Γ£à Pros: Complete solution, Multi-broker, Live trading ready
+   ΓÜá∩╕Å  Cons: Chinese-focused, Heavy framework
+
+5. jesse (5k+ stars)
+   ≡ƒöù https://github.com/jesse-ai/jesse
+   ≡ƒÆí Why: Advanced backtesting and live trading, modern Python
+   Γ£à Pros: Modern codebase, Great backtesting, Good docs
+   ΓÜá∩╕Å  Cons: Crypto-focused, Newer project
+
+6. AlgoTrading (India-specific) (Various stars)
+   ≡ƒöù https://github.com/topics/algo-trading-india
+   ≡ƒÆí Why: India-specific algo trading repos
+   Γ£à Pros: NSE-focused, Zerodha integration, Local examples
+   ΓÜá∩╕Å  Cons: Smaller projects, Less maintained
+
+====================================================================================================
+≡ƒÄ» BEST CHOICE FOR YOU:
+====================================================================================================
+
+    For NSE Options Intraday Momentum Scalping:
+    
+    1. START WITH: backtrader
+       - Easy to learn
+       - Good for options
+       - Can integrate with Zerodha API
+       - Our mock_backtest.py is similar approach
+    
+    2. THEN ADD: Zerodha Kite Connect API
+       - Official Zerodha API
+       - Real-time data
+       - Order execution
+       - Free for clients
+    
+    3. OPTIONAL: freqtrade (for ideas)
+       - Study their strategy structure
+       - Learn from their backtesting
+       - Adapt concepts for options
+    
+    4. BUILD YOUR OWN (recommended):
+       - Use our mock_backtest.py as base
+       - Add real NSE data
+       - Integrate Zerodha API
+       - Keep it simple and focused
+    
+
+Γ£à Exploration complete!

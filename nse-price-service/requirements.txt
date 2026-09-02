@@ -1,0 +1,6 @@
+# NSE Price Service — dependencies
+pandas>=2.0
+yfinance>=0.2.30
+curl_cffi>=0.7
+requests>=2.31
+redis>=4.0

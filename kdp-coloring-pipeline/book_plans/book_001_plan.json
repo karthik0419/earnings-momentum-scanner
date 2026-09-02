@@ -1,0 +1,731 @@
+{
+  "metadata": {
+    "title": "My First Big Coloring Book",
+    "subtitle": "100 Fun Pages for Kids Ages 3-8",
+    "author": "Creative Kids Publishing",
+    "total_pages": 100,
+    "target_age": "3-8 years",
+    "created_at": "2026-08-23T13:32:11.410265",
+    "status": "planned"
+  },
+  "pages": [
+    {
+      "page_number": 1,
+      "category": "Animals",
+      "subject": "Dog",
+      "prompt": "Simple black and white line drawing for kids coloring book. Dog, cute and friendly looking, full body view. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "failed",
+      "image_path": "F:\\projects\\claude\\kdp-coloring-pipeline\\generated_images\\page_001_dog.png"
+    },
+    {
+      "page_number": 2,
+      "category": "Animals",
+      "subject": "Cat",
+      "prompt": "Simple black and white line drawing for kids coloring book. Cat, cute and friendly looking, full body view. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "generated",
+      "image_path": "F:\\projects\\claude\\kdp-coloring-pipeline\\generated_images\\page_002_cat.png"
+    },
+    {
+      "page_number": 3,
+      "category": "Animals",
+      "subject": "Elephant",
+      "prompt": "Simple black and white line drawing for kids coloring book. Elephant, cute and friendly looking, full body view. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "generated",
+      "image_path": "F:\\projects\\claude\\kdp-coloring-pipeline\\generated_images\\page_003_elephant.png"
+    },
+    {
+      "page_number": 4,
+      "category": "Animals",
+      "subject": "Lion",
+      "prompt": "Simple black and white line drawing for kids coloring book. Lion, cute and friendly looking, full body view. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "generated",
+      "image_path": "F:\\projects\\claude\\kdp-coloring-pipeline\\generated_images\\page_004_lion.png"
+    },
+    {
+      "page_number": 5,
+      "category": "Animals",
+      "subject": "Tiger",
+      "prompt": "Simple black and white line drawing for kids coloring book. Tiger, cute and friendly looking, full body view. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "generated",
+      "image_path": "F:\\projects\\claude\\kdp-coloring-pipeline\\generated_images\\page_005_tiger.png"
+    },
+    {
+      "page_number": 6,
+      "category": "Animals",
+      "subject": "Giraffe",
+      "prompt": "Simple black and white line drawing for kids coloring book. Giraffe, cute and friendly looking, full body view. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 7,
+      "category": "Animals",
+      "subject": "Zebra",
+      "prompt": "Simple black and white line drawing for kids coloring book. Zebra, cute and friendly looking, full body view. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 8,
+      "category": "Animals",
+      "subject": "Monkey",
+      "prompt": "Simple black and white line drawing for kids coloring book. Monkey, cute and friendly looking, full body view. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 9,
+      "category": "Animals",
+      "subject": "Bear",
+      "prompt": "Simple black and white line drawing for kids coloring book. Bear, cute and friendly looking, full body view. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 10,
+      "category": "Animals",
+      "subject": "Rabbit",
+      "prompt": "Simple black and white line drawing for kids coloring book. Rabbit, cute and friendly looking, full body view. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 11,
+      "category": "Animals",
+      "subject": "Horse",
+      "prompt": "Simple black and white line drawing for kids coloring book. Horse, cute and friendly looking, full body view. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 12,
+      "category": "Animals",
+      "subject": "Cow",
+      "prompt": "Simple black and white line drawing for kids coloring book. Cow, cute and friendly looking, full body view. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 13,
+      "category": "Animals",
+      "subject": "Pig",
+      "prompt": "Simple black and white line drawing for kids coloring book. Pig, cute and friendly looking, full body view. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 14,
+      "category": "Animals",
+      "subject": "Sheep",
+      "prompt": "Simple black and white line drawing for kids coloring book. Sheep, cute and friendly looking, full body view. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 15,
+      "category": "Animals",
+      "subject": "Goat",
+      "prompt": "Simple black and white line drawing for kids coloring book. Goat, cute and friendly looking, full body view. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 16,
+      "category": "Animals",
+      "subject": "Deer",
+      "prompt": "Simple black and white line drawing for kids coloring book. Deer, cute and friendly looking, full body view. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 17,
+      "category": "Animals",
+      "subject": "Fox",
+      "prompt": "Simple black and white line drawing for kids coloring book. Fox, cute and friendly looking, full body view. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 18,
+      "category": "Animals",
+      "subject": "Wolf",
+      "prompt": "Simple black and white line drawing for kids coloring book. Wolf, cute and friendly looking, full body view. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 19,
+      "category": "Animals",
+      "subject": "Panda",
+      "prompt": "Simple black and white line drawing for kids coloring book. Panda, cute and friendly looking, full body view. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 20,
+      "category": "Animals",
+      "subject": "Koala",
+      "prompt": "Simple black and white line drawing for kids coloring book. Koala, cute and friendly looking, full body view. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 21,
+      "category": "Vehicles",
+      "subject": "Car",
+      "prompt": "Simple black and white line drawing for kids coloring book. Car, side view, simple design. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 22,
+      "category": "Vehicles",
+      "subject": "Bus",
+      "prompt": "Simple black and white line drawing for kids coloring book. Bus, side view, simple design. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 23,
+      "category": "Vehicles",
+      "subject": "Train",
+      "prompt": "Simple black and white line drawing for kids coloring book. Train, side view, simple design. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 24,
+      "category": "Vehicles",
+      "subject": "Airplane",
+      "prompt": "Simple black and white line drawing for kids coloring book. Airplane, side view, simple design. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 25,
+      "category": "Vehicles",
+      "subject": "Helicopter",
+      "prompt": "Simple black and white line drawing for kids coloring book. Helicopter, side view, simple design. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 26,
+      "category": "Vehicles",
+      "subject": "Boat",
+      "prompt": "Simple black and white line drawing for kids coloring book. Boat, side view, simple design. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 27,
+      "category": "Vehicles",
+      "subject": "Ship",
+      "prompt": "Simple black and white line drawing for kids coloring book. Ship, side view, simple design. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 28,
+      "category": "Vehicles",
+      "subject": "Bicycle",
+      "prompt": "Simple black and white line drawing for kids coloring book. Bicycle, side view, simple design. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 29,
+      "category": "Vehicles",
+      "subject": "Motorcycle",
+      "prompt": "Simple black and white line drawing for kids coloring book. Motorcycle, side view, simple design. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 30,
+      "category": "Vehicles",
+      "subject": "Truck",
+      "prompt": "Simple black and white line drawing for kids coloring book. Truck, side view, simple design. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 31,
+      "category": "Vehicles",
+      "subject": "Fire Truck",
+      "prompt": "Simple black and white line drawing for kids coloring book. Fire Truck, side view, simple design. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 32,
+      "category": "Vehicles",
+      "subject": "Police Car",
+      "prompt": "Simple black and white line drawing for kids coloring book. Police Car, side view, simple design. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 33,
+      "category": "Vehicles",
+      "subject": "Ambulance",
+      "prompt": "Simple black and white line drawing for kids coloring book. Ambulance, side view, simple design. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 34,
+      "category": "Vehicles",
+      "subject": "Tractor",
+      "prompt": "Simple black and white line drawing for kids coloring book. Tractor, side view, simple design. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 35,
+      "category": "Vehicles",
+      "subject": "Rocket",
+      "prompt": "Simple black and white line drawing for kids coloring book. Rocket, side view, simple design. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 36,
+      "category": "Fruits & Vegetables",
+      "subject": "Apple",
+      "prompt": "Simple black and white line drawing for kids coloring book. Apple, whole fruit/vegetable, simple shape. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 37,
+      "category": "Fruits & Vegetables",
+      "subject": "Banana",
+      "prompt": "Simple black and white line drawing for kids coloring book. Banana, whole fruit/vegetable, simple shape. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 38,
+      "category": "Fruits & Vegetables",
+      "subject": "Orange",
+      "prompt": "Simple black and white line drawing for kids coloring book. Orange, whole fruit/vegetable, simple shape. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 39,
+      "category": "Fruits & Vegetables",
+      "subject": "Grapes",
+      "prompt": "Simple black and white line drawing for kids coloring book. Grapes, whole fruit/vegetable, simple shape. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 40,
+      "category": "Fruits & Vegetables",
+      "subject": "Strawberry",
+      "prompt": "Simple black and white line drawing for kids coloring book. Strawberry, whole fruit/vegetable, simple shape. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 41,
+      "category": "Fruits & Vegetables",
+      "subject": "Watermelon",
+      "prompt": "Simple black and white line drawing for kids coloring book. Watermelon, whole fruit/vegetable, simple shape. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 42,
+      "category": "Fruits & Vegetables",
+      "subject": "Pineapple",
+      "prompt": "Simple black and white line drawing for kids coloring book. Pineapple, whole fruit/vegetable, simple shape. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 43,
+      "category": "Fruits & Vegetables",
+      "subject": "Carrot",
+      "prompt": "Simple black and white line drawing for kids coloring book. Carrot, whole fruit/vegetable, simple shape. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 44,
+      "category": "Fruits & Vegetables",
+      "subject": "Tomato",
+      "prompt": "Simple black and white line drawing for kids coloring book. Tomato, whole fruit/vegetable, simple shape. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 45,
+      "category": "Fruits & Vegetables",
+      "subject": "Broccoli",
+      "prompt": "Simple black and white line drawing for kids coloring book. Broccoli, whole fruit/vegetable, simple shape. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 46,
+      "category": "Fruits & Vegetables",
+      "subject": "Corn",
+      "prompt": "Simple black and white line drawing for kids coloring book. Corn, whole fruit/vegetable, simple shape. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 47,
+      "category": "Fruits & Vegetables",
+      "subject": "Pumpkin",
+      "prompt": "Simple black and white line drawing for kids coloring book. Pumpkin, whole fruit/vegetable, simple shape. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 48,
+      "category": "Fruits & Vegetables",
+      "subject": "Potato",
+      "prompt": "Simple black and white line drawing for kids coloring book. Potato, whole fruit/vegetable, simple shape. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 49,
+      "category": "Fruits & Vegetables",
+      "subject": "Onion",
+      "prompt": "Simple black and white line drawing for kids coloring book. Onion, whole fruit/vegetable, simple shape. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 50,
+      "category": "Fruits & Vegetables",
+      "subject": "Pepper",
+      "prompt": "Simple black and white line drawing for kids coloring book. Pepper, whole fruit/vegetable, simple shape. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 51,
+      "category": "Shapes & Objects",
+      "subject": "Circle",
+      "prompt": "Simple black and white line drawing for kids coloring book. Circle, clear and simple shape. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 52,
+      "category": "Shapes & Objects",
+      "subject": "Square",
+      "prompt": "Simple black and white line drawing for kids coloring book. Square, clear and simple shape. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 53,
+      "category": "Shapes & Objects",
+      "subject": "Triangle",
+      "prompt": "Simple black and white line drawing for kids coloring book. Triangle, clear and simple shape. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 54,
+      "category": "Shapes & Objects",
+      "subject": "Star",
+      "prompt": "Simple black and white line drawing for kids coloring book. Star, clear and simple shape. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 55,
+      "category": "Shapes & Objects",
+      "subject": "Heart",
+      "prompt": "Simple black and white line drawing for kids coloring book. Heart, clear and simple shape. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 56,
+      "category": "Shapes & Objects",
+      "subject": "House",
+      "prompt": "Simple black and white line drawing for kids coloring book. House, clear and simple shape. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 57,
+      "category": "Shapes & Objects",
+      "subject": "Tree",
+      "prompt": "Simple black and white line drawing for kids coloring book. Tree, clear and simple shape. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 58,
+      "category": "Shapes & Objects",
+      "subject": "Sun",
+      "prompt": "Simple black and white line drawing for kids coloring book. Sun, clear and simple shape. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 59,
+      "category": "Shapes & Objects",
+      "subject": "Moon",
+      "prompt": "Simple black and white line drawing for kids coloring book. Moon, clear and simple shape. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 60,
+      "category": "Shapes & Objects",
+      "subject": "Cloud",
+      "prompt": "Simple black and white line drawing for kids coloring book. Cloud, clear and simple shape. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 61,
+      "category": "Shapes & Objects",
+      "subject": "Ball",
+      "prompt": "Simple black and white line drawing for kids coloring book. Ball, clear and simple shape. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 62,
+      "category": "Shapes & Objects",
+      "subject": "Balloon",
+      "prompt": "Simple black and white line drawing for kids coloring book. Balloon, clear and simple shape. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 63,
+      "category": "Shapes & Objects",
+      "subject": "Kite",
+      "prompt": "Simple black and white line drawing for kids coloring book. Kite, clear and simple shape. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 64,
+      "category": "Shapes & Objects",
+      "subject": "Umbrella",
+      "prompt": "Simple black and white line drawing for kids coloring book. Umbrella, clear and simple shape. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 65,
+      "category": "Shapes & Objects",
+      "subject": "Book",
+      "prompt": "Simple black and white line drawing for kids coloring book. Book, clear and simple shape. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 66,
+      "category": "Birds",
+      "subject": "Parrot",
+      "prompt": "Simple black and white line drawing for kids coloring book. Parrot, side or front view, wings visible. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 67,
+      "category": "Birds",
+      "subject": "Peacock",
+      "prompt": "Simple black and white line drawing for kids coloring book. Peacock, side or front view, wings visible. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 68,
+      "category": "Birds",
+      "subject": "Owl",
+      "prompt": "Simple black and white line drawing for kids coloring book. Owl, side or front view, wings visible. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 69,
+      "category": "Birds",
+      "subject": "Eagle",
+      "prompt": "Simple black and white line drawing for kids coloring book. Eagle, side or front view, wings visible. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 70,
+      "category": "Birds",
+      "subject": "Sparrow",
+      "prompt": "Simple black and white line drawing for kids coloring book. Sparrow, side or front view, wings visible. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 71,
+      "category": "Birds",
+      "subject": "Duck",
+      "prompt": "Simple black and white line drawing for kids coloring book. Duck, side or front view, wings visible. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 72,
+      "category": "Birds",
+      "subject": "Swan",
+      "prompt": "Simple black and white line drawing for kids coloring book. Swan, side or front view, wings visible. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 73,
+      "category": "Birds",
+      "subject": "Penguin",
+      "prompt": "Simple black and white line drawing for kids coloring book. Penguin, side or front view, wings visible. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 74,
+      "category": "Birds",
+      "subject": "Flamingo",
+      "prompt": "Simple black and white line drawing for kids coloring book. Flamingo, side or front view, wings visible. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 75,
+      "category": "Birds",
+      "subject": "Crow",
+      "prompt": "Simple black and white line drawing for kids coloring book. Crow, side or front view, wings visible. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 76,
+      "category": "Sea Creatures",
+      "subject": "Fish",
+      "prompt": "Simple black and white line drawing for kids coloring book. Fish, swimming pose, friendly looking. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 77,
+      "category": "Sea Creatures",
+      "subject": "Dolphin",
+      "prompt": "Simple black and white line drawing for kids coloring book. Dolphin, swimming pose, friendly looking. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 78,
+      "category": "Sea Creatures",
+      "subject": "Whale",
+      "prompt": "Simple black and white line drawing for kids coloring book. Whale, swimming pose, friendly looking. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 79,
+      "category": "Sea Creatures",
+      "subject": "Octopus",
+      "prompt": "Simple black and white line drawing for kids coloring book. Octopus, swimming pose, friendly looking. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 80,
+      "category": "Sea Creatures",
+      "subject": "Starfish",
+      "prompt": "Simple black and white line drawing for kids coloring book. Starfish, swimming pose, friendly looking. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 81,
+      "category": "Sea Creatures",
+      "subject": "Crab",
+      "prompt": "Simple black and white line drawing for kids coloring book. Crab, swimming pose, friendly looking. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 82,
+      "category": "Sea Creatures",
+      "subject": "Seahorse",
+      "prompt": "Simple black and white line drawing for kids coloring book. Seahorse, swimming pose, friendly looking. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 83,
+      "category": "Sea Creatures",
+      "subject": "Jellyfish",
+      "prompt": "Simple black and white line drawing for kids coloring book. Jellyfish, swimming pose, friendly looking. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 84,
+      "category": "Sea Creatures",
+      "subject": "Turtle",
+      "prompt": "Simple black and white line drawing for kids coloring book. Turtle, swimming pose, friendly looking. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 85,
+      "category": "Sea Creatures",
+      "subject": "Shark",
+      "prompt": "Simple black and white line drawing for kids coloring book. Shark, swimming pose, friendly looking. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 86,
+      "category": "Insects",
+      "subject": "Butterfly",
+      "prompt": "Simple black and white line drawing for kids coloring book. Butterfly, top view, clear body parts. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 87,
+      "category": "Insects",
+      "subject": "Bee",
+      "prompt": "Simple black and white line drawing for kids coloring book. Bee, top view, clear body parts. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 88,
+      "category": "Insects",
+      "subject": "Ladybug",
+      "prompt": "Simple black and white line drawing for kids coloring book. Ladybug, top view, clear body parts. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 89,
+      "category": "Insects",
+      "subject": "Dragonfly",
+      "prompt": "Simple black and white line drawing for kids coloring book. Dragonfly, top view, clear body parts. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 90,
+      "category": "Insects",
+      "subject": "Ant",
+      "prompt": "Simple black and white line drawing for kids coloring book. Ant, top view, clear body parts. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 91,
+      "category": "Insects",
+      "subject": "Grasshopper",
+      "prompt": "Simple black and white line drawing for kids coloring book. Grasshopper, top view, clear body parts. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 92,
+      "category": "Insects",
+      "subject": "Caterpillar",
+      "prompt": "Simple black and white line drawing for kids coloring book. Caterpillar, top view, clear body parts. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 93,
+      "category": "Insects",
+      "subject": "Spider",
+      "prompt": "Simple black and white line drawing for kids coloring book. Spider, top view, clear body parts. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 94,
+      "category": "Insects",
+      "subject": "Snail",
+      "prompt": "Simple black and white line drawing for kids coloring book. Snail, top view, clear body parts. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 95,
+      "category": "Insects",
+      "subject": "Firefly",
+      "prompt": "Simple black and white line drawing for kids coloring book. Firefly, top view, clear body parts. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 96,
+      "category": "Flowers",
+      "subject": "Rose",
+      "prompt": "Simple black and white line drawing for kids coloring book. Rose, front view, petals clearly visible. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 97,
+      "category": "Flowers",
+      "subject": "Sunflower",
+      "prompt": "Simple black and white line drawing for kids coloring book. Sunflower, front view, petals clearly visible. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 98,
+      "category": "Flowers",
+      "subject": "Tulip",
+      "prompt": "Simple black and white line drawing for kids coloring book. Tulip, front view, petals clearly visible. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 99,
+      "category": "Flowers",
+      "subject": "Daisy",
+      "prompt": "Simple black and white line drawing for kids coloring book. Daisy, front view, petals clearly visible. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    },
+    {
+      "page_number": 100,
+      "category": "Flowers",
+      "subject": "Lotus",
+      "prompt": "Simple black and white line drawing for kids coloring book. Lotus, front view, petals clearly visible. Clean bold outlines, no shading, no color, no gradients, white background, centered composition, suitable for ages 3-8, no text",
+      "status": "pending"
+    }
+  ],
+  "summary": {
+    "total_pages": 100,
+    "categories": {
+      "Animals": 20,
+      "Vehicles": 15,
+      "Fruits & Vegetables": 15,
+      "Shapes & Objects": 15,
+      "Birds": 10,
+      "Sea Creatures": 10,
+      "Insects": 10,
+      "Flowers": 5
+    }
+  }
+}

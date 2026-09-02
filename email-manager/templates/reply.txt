@@ -1,0 +1,6 @@
+Thank you for your email regarding: {subject}
+
+I have received your message and will respond shortly.
+
+---
+Auto-reply via email-manager

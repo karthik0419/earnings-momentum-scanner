@@ -1,0 +1,20 @@
+# KDP Coloring Book Pipeline - Dependencies
+
+# Image processing
+Pillow>=10.1.0
+
+# PDF generation
+reportlab>=4.0.0
+PyPDF2>=3.0.0
+
+# HTTP requests (for AI APIs)
+requests>=2.31.0
+
+# Environment variables
+python-dotenv>=1.0.0
+
+# Optional: AI APIs
+# openai>=1.3.0  # For GPT-4 planning
+# anthropic>=0.7.0  # For Claude planning
+# replicate>=0.15.0  # For Replicate image generation
+# stability-sdk>=0.8.0  # For Stability AI

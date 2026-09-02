@@ -1,0 +1,80 @@
+﻿======================================================================
+  PEAD SCANNER ù Single Stock Analysis
+  Symbol: NYKAA.NS
+======================================================================
+
+[1/6] Fetching earnings from screener.in...
+  Found 13 quarters of earnings data
+    Jun 2025: Revenue=?  NetProfit=24.0  EPS=0.08
+    Sep 2025: Revenue=?  NetProfit=33.0  EPS=0.12
+    Dec 2025: Revenue=?  NetProfit=68.0  EPS=0.22
+    Mar 2026: Revenue=?  NetProfit=79.0  EPS=0.27
+
+[2/6] Filtering earnings (growth + consistency)...
+  Passes filter: True
+  Consistency score: 100.0
+  Avg YoY growth: 175.65%
+  Growth quarters: 4/13
+
+[3/6] Fetching price data...
+  Got 245 days of price data
+  Current price: Rs 344.90
+
+[4/6] Finding result date...
+  Last quarter: Mar 2026
+  Result date: 2026-05-21
+  Days since result: 75
+  Mode: OUTSIDE_WINDOW (no recent earnings)
+
+[5/6] Historical earnings reactions (last 4 quarters)...
+  Jun 2025: spike=+5.08%  d1=+0.00%  d5=+0.00%  d20=+0.00%
+  Sep 2025: spike=+6.08%  d1=+0.00%  d5=+0.00%  d20=+0.00%
+  Dec 2025: spike=+7.24%  d1=+0.00%  d5=+0.00%  d20=+0.00%
+  Mar 2026: spike=+1.00%  d1=+0.00%  d5=+0.00%  d20=+0.00%
+  Average spike: +4.85%
+
+[6/6] Entry detection...
+  Not in post-result window (mode=None)
+  Earnings were outside the 45-day post-result window
+
+  Profit projection (current quarter):
+    Projected net profit: 70.28
+    Projected EPS:        0.24
+    YoY growth:           162.13%
+    Confidence:           low
+
+  PEAD Score: 70.0 / 100
+  Score breakdown:
+    earnings_quality: 30.0
+    historical_reaction: 15.0
+    sustained_bonus: 0.0
+    entry_quality: 0.0
+    sector_momentum: 15.0
+    profit_growth: 10.0
+
+======================================================================
+  SUMMARY
+======================================================================
+  Stock:          NYKAA.NS
+  Current price:  Rs 344.90
+  Last quarter:   Mar 2026
+  Result date:    2026-05-21
+  Mode:           OUTSIDE_WINDOW
+  Avg spike:      +4.85%
+  PEAD score:     70.0 / 100
+  ENTRY SIGNAL:   NO
+  Reason: Earnings outside 45-day post-result window
+
+  Recent price action (last 10 days):
+    2026-07-19  O=322.40 H=329.60 L=322.40 C=323.50 V=5976462
+    2026-07-20  O=324.80 H=329.00 L=322.65 C=327.95 V=3133289
+    2026-07-21  O=332.25 H=335.00 L=324.95 C=326.60 V=7608062
+    2026-07-22  O=326.45 H=327.95 L=322.80 C=324.80 V=2517926
+    2026-07-23  O=323.30 H=323.55 L=317.05 C=322.80 V=2040730
+    2026-07-26  O=325.00 H=327.85 L=323.65 C=326.75 V=3589386
+    2026-07-27  O=327.50 H=332.40 L=325.85 C=329.60 V=6844872
+    2026-07-28  O=331.00 H=332.60 L=326.10 C=327.50 V=2803127
+    2026-07-29  O=327.50 H=334.20 L=326.75 C=333.75 V=8652158
+    2026-08-02  O=335.00 H=344.90 L=332.80 C=344.90 V=6931047
+
+======================================================================
